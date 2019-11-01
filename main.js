@@ -17,18 +17,16 @@ startGameBtn.addEventListener("click", startGame);
 function returnHome() {
   formContainer.classList.remove("hidden");
   directions.classList.add("hidden");
-  // formContainer.classList.add("visible");
+  gameBoard.classList.add("hidden");
 }
 
 function showDirections(event) {
   event.preventDefault();
   formContainer.classList.add("hidden");
   directions.classList.remove("hidden");
-  // directions.classList.add("visible");
 }
 
 function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
-  // gameBoard.classList.add("visible");
 }

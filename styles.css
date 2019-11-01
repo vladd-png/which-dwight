@@ -104,12 +104,15 @@ h2 {
 }
 
 p {
-  text-align: left;
   color: #292B26;
   font-size: 20px;
   margin-bottom: 15px;
   padding: 0px 50px;
   cursor: default;
+}
+
+.directions-para {
+  text-align: left;
 }
 
 /* --------- Play Game Page ---------- */
@@ -123,10 +126,14 @@ p {
 
 .player-left,
 .player-right {
+  text-align: center;
   width: 250px;
   background-color: #5D4A44;
   height: 100%;
+  padding: 15px;
 }
+
+
 
 /* --------- Overriding Styles ---------- */
 .hidden {
