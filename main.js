@@ -6,6 +6,7 @@ var directions = document.querySelector(".directions");
 var headerDwight = document.querySelector(".header");
 var startGameBtn = document.querySelector("#start-game");
 var gameBoard = document.querySelector(".game-board");
+var cardsBoard = document.querySelector(".playing-cards-board");
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", showDirections);
@@ -18,6 +19,7 @@ function returnHome() {
   formContainer.classList.remove("hidden");
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
+  cardsBoard.classList.add("hidden");
 }
 
 function showDirections(event) {
@@ -29,4 +31,5 @@ function showDirections(event) {
 function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
+  cardsBoard.classList.remove("hidden");
 }
