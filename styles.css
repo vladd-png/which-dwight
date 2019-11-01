@@ -1,0 +1,97 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background-image: url("./assets/wallpaper.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#menu-icon {
+  height: 80px;
+  width: 80px;
+  border: solid 10px black;
+}
+
+.top-nav {
+  display: flex;
+  background-color: white;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.spacer {
+  width: 100px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  font-size: 50px;
+  color: #5D4A44;
+}
+
+
+/* --------- Player Input Page ---------- */
+.player-input-form {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.player-one,
+.player-two {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.player-one-name,
+.player-two-name {
+  height: 40px;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
+label {
+  font-size: 20px;
+  color: white;
+  margin-top: 20px;
+}
+
+.play-button {
+  margin-top: 105px;
+  width: 71%;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgba( 255, 255, 255, 0.8);
+  border-radius: 3px;
+}
+
+/* --------- Directions Page ---------- */
+
+.hidden {
+  visibility: hidden;
+  height: 0px;
+}
+
+h2 {
+
+}
+
+.directions {
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  flex-wrap: wrap;
+
+}

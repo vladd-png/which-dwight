@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Which Dwight?</title>
+    <meta charset="utf-8">
+    <link href="./styles.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <main>
+      <nav class="top-nav">
+        <img id="menu-icon" src="./assets/hamburger.png" alt="hamburger menu" >
+        <h1>Which Dwight?</h1>
+        <div class="spacer"></div>
+      </nav>
+      <form class="player-input-form">
+        <div class="player-one">
+          <input class="player-one-name"></input>
+          <label>Player One</label>
+        </div>
+        <div class="player-two">
+          <input class="player-two-name"></input>
+          <label>Player Two</label>
+        </div>
+        <button class="play-button">LET'S PLAY</button>
+      </form>
+      <section class="directions hidden">
+        <h2>Welcome ${playerOne.name} and ${playerTwo.name}!<h2>
+          <p>The goal of the game is to find all five pairs of cards as quickly as possible.
+            The player that finds the greatest number of matches, wins. </p>
+          <p>To begin playing, the player whose name is highlighted can click any card in the pile.
+            It will flip over and reveal a picture of Dwight. Click another card.
+            If they match, they will disappear and you will have completed a match!
+            If they don't, you'll have three seconds to look at them before they flip back over.
+            Then it's time for the other person to play!</p>
+          <p>After you play, you’ll see the name of the final winner and how long it took to win the game.</p>
+    </main>
+  </body>
+  <script src="main.js"></script>
+</html>
