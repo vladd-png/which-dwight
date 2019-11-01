@@ -154,11 +154,13 @@ p {
 }
 
 .single-card {
-  height: 300px;
+  height: 250px;
   width: 100px;
-  background-color: blanchedalmond;
+  background-color: #BEB360;
   display: flex;
   flex-wrap: nowrap;
+  margin: 25px;
+  border-radius: 10px;
 }
 
 .a {
