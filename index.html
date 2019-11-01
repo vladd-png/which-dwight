@@ -37,63 +37,76 @@
         <p class="directions-para">After you play, you’ll see the name of the final winner and how long it took to win the game.</p>
         <button class="play-button" id="start-game">PLAY GAME</button>
       </section>
-      <section class="game-board hidden">
-        <div class="player-left">
-          <h3>${PlayerOne.name}</h3>
-          <p class="rank-left">#4 TOP PLAYER</p>
-          <p class="matches-left">MATCHES THIS ROUND</p>
-          <h4>GAME WINS</h4>
-          <p class="win-1-left">ROUND 1</p>
-          <p class="win-time-left">125.75 SECONDS</p>
-          <p class="win-2-left">ROUND 2</p>
-          <p class="win-time-left">63.98 SECONDS</p>
-        </div>
-        <div class="player-right">
-          <h3>${PlayerTwo.name}</h3>
-          <p class="rank-right"></p>
-          <p class="matches-right">MATCHES THIS ROUND</p>
-          <h4>GAME WINS</h4>
-          <p class="win-1-right">ROUND 1</p>
-          <p class="win-time-right">231.7 SECONDS</p>
-          <p class="win-2-right">ROUND 2</p>
-          <p class="win-time-right">98.2 SECONDS</p>
-          <p class="win-3-right">ROUND 3</p>
-          <p class="win-time-right">106.34 SECONDS</p>
-        </div>
-      </section>
-      <section class="playing-cards-board hidden">
-        <div class="playing-cards">
-          <div class="single-card a">
-            content
+      <div class="game-board hidden">
+        <section class="game-column">
+          <div class="player-left">
+            <h3>${PlayerOne.name}</h3>
+            <p class="rank-left">#4 TOP PLAYER</p>
+            <p class="matches-left">MATCHES THIS ROUND</p>
+            <h4>GAME WINS</h4>
+            <p class="win-1-left">ROUND 1</p>
+            <p class="win-time-left">125.75 SECONDS</p>
+            <p class="win-2-left">ROUND 2</p>
+            <p class="win-time-left">63.98 SECONDS</p>
           </div>
-          <div class="single-card b">
-            content
+        </section>
+        <section class="playing-cards-board">
+          <!-- top row of cards -->
+          <div class="card-row">
+            <div class="single-card a">
+              content
+            </div>
+            <div class="single-card b">
+              content
+            </div>
+            <div class="single-card c">
+              content
+            </div>
           </div>
-          <div class="single-card c">
-            content
+          <!-- middle row of cards -->
+          <div class="card-row">
+            <div class="single-card d">
+              content
+            </div>
+            <div class="single-card e">
+              content
+            </div>
+            <div class="single-card f">
+              content
+            </div>
+            <div class="single-card g">
+              content
+            </div>
           </div>
-          <div class="single-card d">
-            content
+          <!-- bottom row of cards -->
+          <div class="card-row">
+            <div class="single-card h">
+              content
+            </div>
+            <div class="single-card i">
+              content
+            </div>
+            <div class="single-card k">
+              content
+            </div>
           </div>
-          <div class="single-card e">
-            content
+
+        </section>
+        <section class="game-column">
+          <div class="player-right">
+            <h3>${PlayerTwo.name}</h3>
+            <p class="rank-right"></p>
+            <p class="matches-right">MATCHES THIS ROUND</p>
+            <h4>GAME WINS</h4>
+            <p class="win-1-right">ROUND 1</p>
+            <p class="win-time-right">231.7 SECONDS</p>
+            <p class="win-2-right">ROUND 2</p>
+            <p class="win-time-right">98.2 SECONDS</p>
+            <p class="win-3-right">ROUND 3</p>
+            <p class="win-time-right">106.34 SECONDS</p>
           </div>
-          <div class="single-card f">
-            content
-          </div>
-          <div class="single-card g">
-            content
-          </div>
-          <div class="single-card h">
-            content
-          </div>
-          <div class="single-card i">
-            content
-          </div>
-          <div class="a">
-            content
-          </div>
-      </section>
+        </section>
+      </div>
     </main>
   </body>
   <script src="main.js"></script>
