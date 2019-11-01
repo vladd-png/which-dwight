@@ -11,7 +11,7 @@
     <main>
       <nav class="top-nav">
         <img id="menu-icon" src="./assets/hamburger.png" alt="hamburger menu" >
-        <h1>Which Dwight?</h1>
+        <h1 class="header">Which Dwight?</h1>
         <div class="spacer"></div>
       </nav>
       <form class="player-input-form">
@@ -23,18 +23,44 @@
           <input class="player-two-name"></input>
           <label>Player Two</label>
         </div>
-        <button class="play-button">LET'S PLAY</button>
+        <button class="play-button">PLAY GAME</button>
       </form>
       <section class="directions hidden">
         <h2>Welcome ${playerOne.name} and ${playerTwo.name}!<h2>
-          <p>The goal of the game is to find all five pairs of cards as quickly as possible.
+        <p>The goal of the game is to find all five pairs of cards as quickly as possible.
             The player that finds the greatest number of matches, wins. </p>
-          <p>To begin playing, the player whose name is highlighted can click any card in the pile.
+        <p>To begin playing, the player whose name is highlighted can click any card in the pile.
             It will flip over and reveal a picture of Dwight. Click another card.
             If they match, they will disappear and you will have completed a match!
             If they don't, you'll have three seconds to look at them before they flip back over.
             Then it's time for the other person to play!</p>
-          <p>After you play, you’ll see the name of the final winner and how long it took to win the game.</p>
+        <p>After you play, you’ll see the name of the final winner and how long it took to win the game.</p>
+        <button class="play-button" id="start-game">PLAY GAME</button>
+      </section>
+      <section class="game-board hidden">
+        <div class="player-left">
+          <h3>${PlayerOne.name}</h3>
+          <p class="rank-left">#4 TOP PLAYER</p>
+          <p class="matches-left">MATCHES THIS ROUND</p>
+          <h4>GAME WINS</h4>
+          <p class="win-1-left">ROUND 1</p>
+          <p class="win-time-left">125.75 SECONDS</p>
+          <p class="win-2-left">ROUND 2</p>
+          <p class="win-time-left">63.98 SECONDS</p>
+        </div>
+        <div class="player-right">
+          <h3>${PlayerTwo.name}</h3>
+          <p class="rank-right"></p>
+          <p class="matches-right">MATCHES THIS ROUND</p>
+          <h4>GAME WINS</h4>
+          <p class="win-1-right">ROUND 1</p>
+          <p class="win-time-right">231.7 SECONDS</p>
+          <p class="win-2-right">ROUND 2</p>
+          <p class="win-time-right">98.2 SECONDS</p>
+          <p class="win-3-right">ROUND 3</p>
+          <p class="win-time-right">106.34 SECONDS</p>
+        </div>
+      </section>
     </main>
   </body>
   <script src="main.js"></script>
