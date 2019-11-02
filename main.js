@@ -6,18 +6,36 @@ var directions = document.querySelector(".directions");
 var headerDwight = document.querySelector(".header");
 var startGameBtn = document.querySelector("#start-game");
 var gameBoard = document.querySelector(".game-board");
+var cardsBoard = document.querySelector(".playing-cards-board");
+var leftHeaderName = document.querySelector(".left-header-name");
+var rightHeaderName = document.querySelector(".right-header-name");
+var playerOneName = document.getElementById("player-one");
+var playerTwoName = document.getElementById("player-two");
+// var playerName = "";
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", showDirections);
 headerDwight.addEventListener("click", returnHome);
 startGameBtn.addEventListener("click", startGame);
+playBtn.addEventListener("click", saveName);
+
 
 // ---------- Helper Functions ----------
+// function saveName (event) {
+//   playerName = event.target.id;
+//   // activityName = event.target.value;
+//   // clearActivityButtons();
+//   event.target.classList.toggle(`player-${playerName}-name`);
+// }
 
+
+// ---------- Other Functions ----------
 function returnHome() {
   formContainer.classList.remove("hidden");
+  formContainer.reset();
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
+  cardsBoard.classList.add("hidden");
 }
 
 function showDirections(event) {
@@ -29,4 +47,14 @@ function showDirections(event) {
 function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
+  cardsBoard.classList.remove("hidden");
+}
+
+function saveName() {
+  var oneName = document.querySelector(".player-one-name").value;
+  leftHeaderName.innerText = oneName;
+  playerOneName.innerText = oneName;
+  var twoName = document.querySelector(".player-two-name").value;
+  rightHeaderName.innerText = twoName;
+  playerTwoName.innerText = twoName;
 }
