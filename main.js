@@ -33,3 +33,14 @@ function startGame() {
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
 }
+
+function enablePlayBtn(event) {
+  event.preventDefault();
+  var titleInput = document.querySelector("#title-input");
+  var bodyInput = document.querySelector("#body-input");
+  if (titleInput.value === "" || bodyInput.value === "") {
+    saveBtn.classList.add("disabled");
+  } else {
+    saveBtn.classList.remove("disabled");
+  }
+}
