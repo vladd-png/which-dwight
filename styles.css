@@ -85,7 +85,6 @@ label {
 
 .disabled {
   pointer-events: none;
-  background-color: #51518c;
 }
 
 /* --------- Directions Page ---------- */
@@ -149,27 +148,23 @@ p {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: space-between;
   width: 50%;
 }
 
 .card-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
 }
 
 .single-card {
-  height: 250px;
-  width: 100px;
-  background-color: #BEB360;
   display: flex;
   flex-wrap: nowrap;
-  margin: 25px;
   border-radius: 10px;
 }
 
 /* --------- Card Flip Animation ---------- */
-
 .flip-container {
 	perspective: 1000px;
 }
@@ -177,23 +172,18 @@ p {
 .flip-container:hover .flipper,
 .flip-container.hover .flipper {
 	transform: rotateY(180deg);
+  /* translateX(-200px) */
 }
-
-/* .flip-container, .front, .back {
-	width: 320px;
-	height: 480px;
-} */
 
 .flipper {
 	transition: 0.6s;
-	transform-style:
-  preserve-3d;
+	transform-style: preserve-3d;
 	position: relative;
 }
 
-.front, .back {
+.front,
+.back {
 	backface-visibility: hidden;
-
 	position: absolute;
 	top: 0;
 	left: 0;

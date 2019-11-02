@@ -13,6 +13,7 @@ var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
+var cardActive = document.querySelector(".flip-container");
 // var playerName = "";
 
 // ---------- Event Listeners ----------
@@ -22,6 +23,7 @@ startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
 playBtn.addEventListener("click", saveName);
+cardActive.addEventListener("click", flipCard);
 
 
 // ---------- Helper Functions ----------
@@ -60,7 +62,6 @@ function startGame() {
 function enablePlayBtn(event) {
   event.preventDefault();
   if (firstInput.value === "" || secondInput.value === "") {
-    console.log("locked");
   } else {
     playBtn.classList.remove("disabled");
   }
@@ -73,4 +74,8 @@ function saveName() {
   var twoName = document.querySelector(".player-two-name").value;
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
+}
+
+function flipCard(event) {
+  cardActive.classList.remove("disabled")
 }
