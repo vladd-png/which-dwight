@@ -50,6 +50,16 @@ function startGame() {
   cardsBoard.classList.remove("hidden");
 }
 
+function enablePlayBtn(event) {
+  event.preventDefault();
+  var titleInput = document.querySelector("#title-input");
+  var bodyInput = document.querySelector("#body-input");
+  if (titleInput.value === "" || bodyInput.value === "") {
+    saveBtn.classList.add("disabled");
+  } else {
+    saveBtn.classList.remove("disabled");
+  }
+  
 function saveName() {
   var oneName = document.querySelector(".player-one-name").value;
   leftHeaderName.innerText = oneName;
