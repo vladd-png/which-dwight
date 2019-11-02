@@ -7,13 +7,20 @@ var headerDwight = document.querySelector(".header");
 var startGameBtn = document.querySelector("#start-game");
 var gameBoard = document.querySelector(".game-board");
 var cardsBoard = document.querySelector(".playing-cards-board");
+var firstInput = document.querySelector("#one-name");
+var secondInput = document.querySelector("#two-name");
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", showDirections);
 headerDwight.addEventListener("click", returnHome);
 startGameBtn.addEventListener("click", startGame);
+firstInput.addEventListener("keyup", enablePlayBtn);
+secondInput.addEventListener("keyup", enablePlayBtn);
 
 // ---------- Helper Functions ----------
+
+// ---------- Other Functions ----------
+
 
 function returnHome() {
   formContainer.classList.remove("hidden");
@@ -36,11 +43,9 @@ function startGame() {
 
 function enablePlayBtn(event) {
   event.preventDefault();
-  var titleInput = document.querySelector("#title-input");
-  var bodyInput = document.querySelector("#body-input");
-  if (titleInput.value === "" || bodyInput.value === "") {
-    saveBtn.classList.add("disabled");
+  if (firstInput.value === "" || secondInput.value === "") {
+    console.log("locked");
   } else {
-    saveBtn.classList.remove("disabled");
+    playBtn.classList.remove("disabled");
   }
 }
