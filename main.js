@@ -7,6 +7,8 @@ var headerDwight = document.querySelector(".header");
 var startGameBtn = document.querySelector("#start-game");
 var gameBoard = document.querySelector(".game-board");
 var cardsBoard = document.querySelector(".playing-cards-board");
+var firstInput = document.querySelector("#one-name");
+var secondInput = document.querySelector("#two-name");
 var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
@@ -17,6 +19,8 @@ var playerTwoName = document.getElementById("player-two");
 playBtn.addEventListener("click", showDirections);
 headerDwight.addEventListener("click", returnHome);
 startGameBtn.addEventListener("click", startGame);
+firstInput.addEventListener("keyup", enablePlayBtn);
+secondInput.addEventListener("keyup", enablePlayBtn);
 playBtn.addEventListener("click", saveName);
 
 
@@ -30,6 +34,8 @@ playBtn.addEventListener("click", saveName);
 
 
 // ---------- Other Functions ----------
+
+
 function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
@@ -52,12 +58,10 @@ function startGame() {
 
 function enablePlayBtn(event) {
   event.preventDefault();
-  var titleInput = document.querySelector("#title-input");
-  var bodyInput = document.querySelector("#body-input");
-  if (titleInput.value === "" || bodyInput.value === "") {
-    saveBtn.classList.add("disabled");
+  if (firstInput.value === "" || secondInput.value === "") {
+    console.log("locked");
   } else {
-    saveBtn.classList.remove("disabled");
+    playBtn.classList.remove("disabled");
   }
   
 function saveName() {

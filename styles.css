@@ -83,6 +83,11 @@ label {
   margin-bottom: 1000px;
 }
 
+.disabled {
+  pointer-events: none;
+  background-color: #51518c;
+}
+
 /* --------- Directions Page ---------- */
 
 h2 {
