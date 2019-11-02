@@ -25,6 +25,7 @@ playBtn.addEventListener("click", saveName);
 
 
 // ---------- Helper Functions ----------
+
 // function saveName (event) {
 //   playerName = event.target.id;
 //   // activityName = event.target.value;
@@ -63,7 +64,8 @@ function enablePlayBtn(event) {
   } else {
     playBtn.classList.remove("disabled");
   }
-  
+}
+
 function saveName() {
   var oneName = document.querySelector(".player-one-name").value;
   leftHeaderName.innerText = oneName;
