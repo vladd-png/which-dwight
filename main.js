@@ -13,7 +13,7 @@ var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
-var cardActive = document.querySelector(".flipper");
+var cardActive = document.querySelector(".card");
 // var playerName = "";
 
 // ---------- Event Listeners ----------
@@ -23,7 +23,7 @@ startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
 playBtn.addEventListener("click", saveName);
-// cardActive.addEventListener("click", flipCard);
+// cardActive.addEventListener("click", checkCard);
 cardsBoard.addEventListener("click", checkCard);
 
 
@@ -90,11 +90,27 @@ function saveName() {
 //     document.querySelector(".card1").classList.toggle("flip")
 //   }
 // }
+//
 
 function checkCard(event) {
-
+  console.log(event);
   if (event.target.classList.contains("card")) {
-      console.log(event);
-    document.querySelector(".card").classList.toggle("flipped");
-  }
+      event.target.classList.toggle("flipped");
+    }
+  // event.target.classList.add("flipped");
+  // if (event.target.classList.contains("card")) {
+  // document.querySelector(".card").classList.toggle("flipped");
 }
+
+//
+// function flip() {
+//     document.querySelector('.card').classList.toggle('flipped');
+// }
+
+const cards = document.querySelectorAll('.memory-card');
+
+function flipCard() {
+  this.classList.toggle('flip');
+}
+
+cards.forEach(card => card.addEventListener('click', flipCard));

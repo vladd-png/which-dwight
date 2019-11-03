@@ -139,7 +139,7 @@ p {
 .player-left,
 .player-right {
   text-align: center;
-  width: 250px;
+  width: 200px;
   background-color: #5D4A44;
   height: 98%;
   padding: 15px;
@@ -149,7 +149,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -159,61 +159,58 @@ p {
   flex-direction: row;
 }
 
-/* .single-card {
-  display: flex;
-  flex-wrap: nowrap;
-  border-radius: 10px;
-  height: 20%;
-} */
-
 /* --------- Card Flip Animation ---------- */
+.memory-game {
+  width: 640px;
+  height: 640px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+}
 
-/* .flip-container {
- 	perspective: 1000px;
- }
+.memory-card {
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  position: relative;
+  margin: 5px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+}
 
-.flip,
-.flipper {
- 	transform: rotateY(180deg);
- }
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: #1C7CCC;
+  backface-visibility: hidden;
+}
 
-.flip-container,
-.front,
-.back {
- 	width: 75%;
- }
+.front-face {
+  transform: rotateY(180deg);
+}
 
-.flipper {
- 	transition: 0.6s;
- 	transform-style: preserve-3d;
- 	position: relative;
- }
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
 
-.front, .back {
- 	backface-visibility: hidden;
- 	position: absolute;
- 	top: 0;
- 	left: 0;
- }
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
 
-.front {
- 	z-index: 200;
- 	transform: rotateY(0deg);
- }
 
-.back {
- 	transform: rotateY(180deg);
- }
 
-#card-back,
-#card-front {
-  /* width: 90%; */
-/* } */
 
 
 .container {
   width: 200px;
-  height: 260px;
+  height: 300px;
   position: relative;
   perspective: 800px;
 }
@@ -225,24 +222,46 @@ p {
   transition: transform 1s;
   transform-style: preserve-3d;
 }
+
 .card div {
-  display: block;
+  /* display: block; */
   height: 100%;
   width: 100%;
   position: absolute;
-  backface-visibility: hidden;
 }
 
-.front {
+.card-front {
   transform: rotateY(180deg);
   background-image: url("./assets/card-back.png");
 }
+
 .card .flipped {
   transform: rotateY(180deg);
 }
 
 .flipped {
-  background-color: magenta;
+  transform: rotateY(180deg);
+}
+
+.a {
+  background-image: url("./assets/joker-dwight.png");
+  /* alt tag dwight in the joker costume */
+}
+
+.b {
+  background-image: url("./assets/hannibal-dwight.png");
+}
+
+.c {
+  background-image: url("./assets/meredith-dwight.png");
+}
+
+.d {
+  background-image: url("./assets/jim-dwight.png");
+}
+
+.e {
+  background-image: url("./assets/kerrigan-dwight.png");
 }
 
 /* --------- Overriding Styles ---------- */
