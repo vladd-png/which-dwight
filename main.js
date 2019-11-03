@@ -13,7 +13,7 @@ var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
-var cardActive = document.querySelector(".flip-container");
+var cardActive = document.querySelector(".flipper");
 // var playerName = "";
 
 // ---------- Event Listeners ----------
@@ -23,7 +23,8 @@ startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
 playBtn.addEventListener("click", saveName);
-cardActive.addEventListener("click", flipCard);
+// cardActive.addEventListener("click", flipCard);
+cardsBoard.addEventListener("click", checkCard);
 
 
 // ---------- Helper Functions ----------
@@ -76,6 +77,24 @@ function saveName() {
   playerTwoName.innerText = twoName;
 }
 
-function flipCard(event) {
-  cardActive.classList.remove("disabled")
+// function flipCard(event) {
+//   console.log("you have hit the delete card function!")
+//   // if(event.target.classList.contains("flipper")) {
+//     //delete the card thats associated with the button
+//   cardActive.classList.remove("disabled");
+// // }
+// }
+
+// function checkCard(event) {
+//   if (event.target.classList.contains("card1")) {
+//     document.querySelector(".card1").classList.toggle("flip")
+//   }
+// }
+
+function checkCard(event) {
+
+  if (event.target.classList.contains("card")) {
+      console.log(event);
+    document.querySelector(".card").classList.toggle("flipped");
+  }
 }
