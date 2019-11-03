@@ -23,8 +23,6 @@ startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
 playBtn.addEventListener("click", saveName);
-// cardActive.addEventListener("click", checkCard);
-cardsBoard.addEventListener("click", checkCard);
 
 
 // ---------- Helper Functions ----------
@@ -77,37 +75,7 @@ function saveName() {
   playerTwoName.innerText = twoName;
 }
 
-// function flipCard(event) {
-//   console.log("you have hit the delete card function!")
-//   // if(event.target.classList.contains("flipper")) {
-//     //delete the card thats associated with the button
-//   cardActive.classList.remove("disabled");
-// // }
-// }
-
-// function checkCard(event) {
-//   if (event.target.classList.contains("card1")) {
-//     document.querySelector(".card1").classList.toggle("flip")
-//   }
-// }
-//
-
-function checkCard(event) {
-  console.log(event);
-  if (event.target.classList.contains("card")) {
-      event.target.classList.toggle("flipped");
-    }
-  // event.target.classList.add("flipped");
-  // if (event.target.classList.contains("card")) {
-  // document.querySelector(".card").classList.toggle("flipped");
-}
-
-//
-// function flip() {
-//     document.querySelector('.card').classList.toggle('flipped');
-// }
-
-const cards = document.querySelectorAll('.memory-card');
+const cards = document.querySelectorAll('.single-card');
 
 function flipCard() {
   this.classList.toggle('flip');
