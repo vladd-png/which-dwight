@@ -79,10 +79,12 @@ function startGame() {
 function enablePlayBtn(event) {
   event.preventDefault();
   if (firstInput.value === "") {
+    //add an error message
   } else {
     playBtn.classList.remove("disabled");
   }
 }
+
 // ---------- Player Information ----------
 function saveName() {
   var oneName = document.querySelector(".player-one-name").value;
@@ -156,12 +158,12 @@ function showCards() {
 
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
-  card.addEventListener("click", saveCardOrder);
+  card.addEventListener("click", flipCard);
   //foreach is an array prototype
   //executes a provided function once for each array element
 });
 
-function saveCardOrder() {
+function flipCard() {
   var selectedCard = event.target.parentElement;
   selectedCard.classList.add("flippedOver");
   selectedCard.classList.add("flip");
@@ -170,10 +172,6 @@ function saveCardOrder() {
     disableBoard = true;
     checkForMatch();
   }
-}
-
-function flipCard() {
-
 }
 
 function checkForMatch() {
@@ -192,8 +190,7 @@ function disableCards(event) {
   function fadeOut() {
     storedCards[0].classList.add("fade");
     storedCards[1].classList.add("fade");
-    storedCards = [];
-    disableBoard = false;
+    resetDeck();
   }
 }
 
@@ -204,10 +201,13 @@ function unflipCards(event) {
     storedCards[0].classList.remove("flip");
     storedCards[1].classList.remove("flip");
     disableBoard = false;
-    storedCards = [];
-    disableBoard = false;
+    resetDeck();
   }
 }
 
+function resetDeck() {
+  storedCards = [];
+  disableBoard = false;
+}
 
 // ---------- Card Flip Animation ----------

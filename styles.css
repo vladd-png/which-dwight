@@ -125,7 +125,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-
+  width: 15%;
 }
 
 .game-board {
@@ -133,7 +133,6 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
 }
 
 .player-left,
@@ -148,30 +147,29 @@ p {
 .playing-cards-board {
   display: flex;
   flex-wrap: wrap;
+  width: 70%;
 }
 
 .card-row {
   margin: auto;
-  width: 900px;
+  width: calc(90% - 5px);
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
   justify-content: space-around;
-  align-content: space-between;
-  padding: 5%;
-  margin: 0px;
+  margin: 5px;
 }
 
 /* --------- Card Flip Animation ---------- */
 .single-card {
-  /* width: calc(25% - 10px); */
-  width: 48%;
+  width: calc(70% - 5px);
   position: relative;
   margin: 5px;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
   display: flex;
+  align-content: space-between;
   justify-content: space-around;
 }
 
