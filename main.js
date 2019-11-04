@@ -22,7 +22,6 @@ var disableBoard = false;
 var storedCards = [];
 var turnCounter = 0;
 
-
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
 var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
@@ -137,13 +136,14 @@ function flipCard() {
 }
 
 function playersTurn() {
-  console.log(turnCounter);
-  if(turnCounter % 4 === 0) {
-    leftColumn.classList.add("player-active");
-    rightColumn.classList.remove("player-active");
-  } else {
-    rightColumn.classList.add("player-active");
-    leftColumn.classList.remove("player-active");
+  if(secondInput.value !== "") {
+    if(turnCounter % 4 === 0) {
+      leftColumn.classList.add("player-active");
+      rightColumn.classList.remove("player-active");
+    } else {
+      rightColumn.classList.add("player-active");
+      leftColumn.classList.remove("player-active");
+    }
   }
 }
 
