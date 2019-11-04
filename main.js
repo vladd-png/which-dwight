@@ -17,7 +17,12 @@ var cards = document.querySelectorAll(".single-card");
 var flippedCardOver = false;
 var disableBoard = false;
 var firstCard, secondCard;
-var deckArray = [];
+var storedDeckOfCards = [];
+var card1 = new Card({idNumber: 1, "./assets/hannibal-dwight.png"});
+var card2 = new Card({idNumber: 2, "./assets/joker-dwight.png"});
+var card3 = new Card({idNumber: 3, "./assets/jim-dwight.png"});
+var card4 = new Card({idNumber: 4, "./assets/meredith-dwight.png"});
+var card5 = new Card({idNumber: 5, "./assets/kerrigan-dwight.png"});
 // var playerName = "";
 
 // ---------- Event Listeners ----------
