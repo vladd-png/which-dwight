@@ -3,8 +3,7 @@ class Deck {
     this.cards = card;
     this.matchedCards = null;
     this.selectedCards = null;
-    this.matches = matches;
-
+    this.matches = null;
     this.value = card.value;
   }
 
