@@ -33,7 +33,6 @@ var card8 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
 var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
 var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
-var deckOfCards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10];
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", savePlayerInfo);
