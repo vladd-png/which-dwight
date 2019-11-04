@@ -17,7 +17,7 @@ var cards = document.querySelectorAll(".single-card");
 var flippedCardOver = false;
 var disableBoard = false;
 var firstCard, secondCard;
-// var storedDeckOfCards = [];
+var storedCards = [];
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
 var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
@@ -163,27 +163,38 @@ function showCards() {
 // card1.resetStoredCard();
 
 cards.forEach(function(card1) {
-  card1.addEventListener("click", flipCard);
+  card1.addEventListener("click", saveCardOrder);
   //foreach is an array prototype
   //executes a provided function once for each array element
 });
 
-function flipCard() {
-  console.log(event.target.closest("div"));
-  // this = the element that is clicked - each card
-  if (disableBoard || this === firstCard) {
+function saveCardOrder() {
+  var selectedCard = event.target.parentElement;
+  // var secondCard = event.target.closest("div");
+  var dataId = event.target.parentElement.dataset;
+  selectedCard.classList.add("flippedOver");
+  selectedCard.classList.add("flip");
+  //this above line flips - move to flip function once works
+  storedCards.push(selectedCard);
+  console.log(storedCards);
+  //selectedCard.dataset = 1
+
+
+
+  if (storedCards.dataset === storedCards.dataset) {
+    console.log("works");
+    flippedCardOver = true;
     return;
   }
-  event.target.closest("div").classList.add("flip");
+  checkForMatch();
+}
+
+function flipCard() {
+  if (disableBoard || dataId === firstCard) {
+    return;
+  }
   //.parentElement
   //what thing did we click on - find the event- cahnge the one Event
-  if (!flippedCardOver) {
-    flippedCardOver = true;
-    firstCard = event.target;
-    return;
-  }
-  secondCard = this;
-  checkForMatch();
 }
 
 function checkForMatch() {
