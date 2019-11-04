@@ -13,11 +13,11 @@ var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
-var cardActive = document.querySelector(".card");
 var cards = document.querySelectorAll(".single-card");
-var hasFlippedCard = false;
+var flippedCardOver = false;
 var disableBoard = false;
 var firstCard, secondCard;
+var deckArray = [];
 // var playerName = "";
 
 // ---------- Event Listeners ----------
@@ -41,7 +41,6 @@ function savePlayerInfo(event) {
 //   // clearActivityButtons();
 //   event.target.classList.toggle(`player-${playerName}`);
 // }
-
 
 // ---------- Page Changes ----------
 function returnHome() {
@@ -81,15 +80,21 @@ function saveName() {
   playerTwoName.innerText = twoName;
 }
 
-// ---------- Card Animation ----------
+// ---------- Card Flip Animation ----------
+cards.forEach(function(card) {
+  card.addEventListener("click", flipCard);
+  //foreach is an array prototype
+  //executes a provided function once for each array element
+});
+
 function flipCard() {
   //this = the element that is clicked - each card
   if (disableBoard || this === firstCard) {
     return;
   }
   this.classList.add("flip");
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
+  if (!flippedCardOver) {
+    flippedCardOver = true;
     firstCard = this;
     return;
   }
@@ -127,25 +132,13 @@ function unflipCards() {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
 function resetStoredCard() {
- hasFlippedCard = false;
- disableBoard = false;
- firstCard = null;
- secondCard = null;
+  flippedCardOver = false;
+  disableBoard = false;
+  firstCard = null;
+  secondCard = null;
 }
 
-cards.forEach(function(card) {
-  card.addEventListener("click", flipCard);
-  //foreach is an array prototype
-  //executes a provided function once for each array element
-});
+
+
+// ---------- Card Flip Animation ----------
