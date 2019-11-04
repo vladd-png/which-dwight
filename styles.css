@@ -10,6 +10,7 @@ main {
   background-image: url("./assets/wallpaper.jpg");
   background-size: stretch;
   background-repeat: no-repeat;
+  height: 100%;
 }
 
 #menu-icon {
@@ -84,7 +85,7 @@ label {
 }
 
 .disabled-color {
-  background-color: gray;
+  background-color: #7D807F;
 }
 
 .disabled {
@@ -107,8 +108,8 @@ h2 {
   margin: 10%;
   width: 80%;
   flex-wrap: wrap;
-  height: 520px;
-  margin-bottom: 500px;
+  /* height: 520px; */
+  margin-bottom: 30%;
 }
 
 p {
@@ -211,4 +212,8 @@ p {
   height: 0px;
   margin: 0px;
   padding: 0px;
+}
+
+.player-active {
+  background-color: #D6AA85;
 }
