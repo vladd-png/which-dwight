@@ -13,29 +13,37 @@ var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
+var cardActive = document.querySelector(".card");
+var cards = document.querySelectorAll(".single-card");
+var hasFlippedCard = false;
+var disableBoard = false;
+var firstCard, secondCard;
 // var playerName = "";
 
 // ---------- Event Listeners ----------
-playBtn.addEventListener("click", showDirections);
+playBtn.addEventListener("click", savePlayerInfo);
 headerDwight.addEventListener("click", returnHome);
 startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
-playBtn.addEventListener("click", saveName);
 
 
 // ---------- Helper Functions ----------
+
+function savePlayerInfo(event) {
+  showDirections(event);
+  saveName();
+}
+
 // function saveName (event) {
 //   playerName = event.target.id;
 //   // activityName = event.target.value;
 //   // clearActivityButtons();
-//   event.target.classList.toggle(`player-${playerName}-name`);
+//   event.target.classList.toggle(`player-${playerName}`);
 // }
 
 
-// ---------- Other Functions ----------
-
-
+// ---------- Page Changes ----------
 function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
@@ -58,12 +66,12 @@ function startGame() {
 
 function enablePlayBtn(event) {
   event.preventDefault();
-  if (firstInput.value === "" || secondInput.value === "") {
-    console.log("locked");
+  if (firstInput.value === "") {
   } else {
     playBtn.classList.remove("disabled");
   }
-  
+}
+// ---------- Player Information ----------
 function saveName() {
   var oneName = document.querySelector(".player-one-name").value;
   leftHeaderName.innerText = oneName;
@@ -72,3 +80,72 @@ function saveName() {
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
 }
+
+// ---------- Card Animation ----------
+function flipCard() {
+  //this = the element that is clicked - each card
+  if (disableBoard || this === firstCard) {
+    return;
+  }
+  this.classList.add("flip");
+  if (!hasFlippedCard) {
+    hasFlippedCard = true;
+    firstCard = this;
+    return;
+  }
+  secondCard = this;
+  checkForMatch();
+}
+
+function checkForMatch() {
+  if (firstCard.dataset.number === secondCard.dataset.number) {
+    disableCards();
+  } else {
+    unflipCards();
+  }
+}
+
+function disableCards() {
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+  setTimeout(fadeOut, 1000);
+  function fadeOut() {
+    firstCard.classList.add("fade");
+    secondCard.classList.add("fade");
+    resetStoredCard();
+  }
+}
+
+function unflipCards() {
+  disableBoard = true;
+  setTimeout(resetCardAnimation, 1500);
+  function resetCardAnimation() {
+    firstCard.classList.remove("flip");
+    secondCard.classList.remove("flip");
+    disableBoard = false;
+    resetStoredCard();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+function resetStoredCard() {
+ hasFlippedCard = false;
+ disableBoard = false;
+ firstCard = null;
+ secondCard = null;
+}
+
+cards.forEach(function(card) {
+  card.addEventListener("click", flipCard);
+  //foreach is an array prototype
+  //executes a provided function once for each array element
+});

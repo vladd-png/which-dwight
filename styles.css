@@ -85,7 +85,6 @@ label {
 
 .disabled {
   pointer-events: none;
-  background-color: #51518c;
 }
 
 /* --------- Directions Page ---------- */
@@ -126,6 +125,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+
 }
 
 .game-board {
@@ -139,38 +139,72 @@ p {
 .player-left,
 .player-right {
   text-align: center;
-  width: 250px;
+  width: 200px;
   background-color: #5D4A44;
-  height: 100%;
+  height: 98%;
   padding: 15px;
 }
 
 .playing-cards-board {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  width: 50%;
 }
 
 .card-row {
+  margin: auto;
+  width: 900px;
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  justify-content: space-around;
+  align-content: space-between;
+  padding: 5%;
+  margin: 0px;
 }
 
+/* --------- Card Flip Animation ---------- */
 .single-card {
-  height: 250px;
-  width: 100px;
-  background-color: #BEB360;
+  width: calc(25% - 10px);
+  position: relative;
+  margin: 5px;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
   display: flex;
-  flex-wrap: nowrap;
-  margin: 25px;
-  border-radius: 10px;
+  justify-content: space-around;
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  position: absolute;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.front-face {
+  transform: rotateY(180deg);
+}
+
+.single-card:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+.single-card.flip {
+  transform: rotateY(180deg);
+}
+
+.fade {
+  visibility: hidden;
+  opacity: 0;
+  transition: delay 2s, visibility 0s 2s, opacity 2s linear;
 }
 
 /* --------- Overriding Styles ---------- */
 .hidden {
-  visibility: hidden;
+  display: none;
+  /* visibility: hidden; */
   height: 0px;
   margin: 0px;
   padding: 0px;

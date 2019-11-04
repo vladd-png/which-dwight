@@ -10,17 +10,17 @@
   <body>
     <main>
       <nav class="top-nav">
-        <img id="menu-icon" src="./assets/hamburger.png" alt="hamburger menu" >
+        <img id="menu-icon" src="./assets/hamburger.png" alt="hamburger menu" />
         <h1 class="header">Which Dwight?</h1>
         <div class="spacer"></div>
       </nav>
       <form class="player-input-form">
         <div class="player-one">
-          <input class="player-one-name" type="text" id="one" maxlength="32"/>
+          <input class="player-one-name" type="text" id="one-name" maxlength="32"/>
           <label>Player One</label>
         </div>
         <div class="player-two">
-          <input class="player-two-name" type="text" id="two" maxlength="32"/>
+          <input class="player-two-name" type="text" id="two-name" maxlength="32"/>
           <label>Player Two</label>
         </div>
         <button class="play-button disabled">PLAY GAME</button>
@@ -49,116 +49,56 @@
             <p class="win-time-left">63.98 SECONDS</p>
           </div>
         </section>
-        <section class="playing-cards-board">
-          <!-- top row of cards -->
-          <div class="card-row">
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+        <section class="playing-cards-board hidden">
+<!-- top row of cards -->
+          <section class="card-row">
+            <div class="single-card" data-number="1">
+              <img class="front-face" src="./assets/jim-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="2">
+              <img class="front-face" src="./assets/hannibal-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="3">
+              <img class="front-face" src="./assets/joker-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-          </div>
-          <!-- middle row of cards -->
-          <div class="card-row">
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+          </section>
+<!-- middle row of cards -->
+          <section class="card-row">
+            <div class="single-card" data-number="3">
+              <img class="front-face" src="./assets/joker-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="4">
+              <img class="front-face" src="./assets/meredith-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="5">
+              <img class="front-face" src="./assets/kerrigan-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="2">
+              <img class="front-face" src="./assets/hannibal-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-          </div>
-          <!-- bottom row of cards -->
-          <div class="card-row">
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+          </section>
+<!-- bottom row of cards -->
+          <section class="card-row">
+            <div class="single-card" data-number="5">
+              <img class="front-face" src="./assets/kerrigan-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="4">
+              <img class="front-face" src="./assets/meredith-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-            <div class="flip-container single-card">
-	             <div class="flipper">
-		             <div class="front">
-			           <!-- front content -->
-		             </div>
-		             <div class="back">
-			           <!-- back content -->
-		             </div>
-	            </div>
+            <div class="single-card" data-number="1">
+              <img class="front-face" src="./assets/jim-dwight.png">
+              <img class="back-face" src="./assets/card-back.png">
             </div>
-          </div>
+          </section>
         </section>
         <section class="game-column">
           <div class="player-right">
@@ -177,5 +117,7 @@
       </div>
     </main>
   </body>
+  <script src="card.js"></script>
+  <script src="deck.js"></script>
   <script src="main.js"></script>
 </html>
