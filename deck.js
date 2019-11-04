@@ -1,8 +1,8 @@
 class Deck {
   constructor(card) {
-    this.cards = cards;
-    this.matchedCards = matchedCards;
-    this.selectedCards = selectedCards;
+    this.cards = card;
+    this.matchedCards = null;
+    this.selectedCards = null;
     this.matches = matches;
 
     this.value = card.value;
