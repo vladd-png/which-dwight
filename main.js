@@ -54,6 +54,8 @@ function savePlayerInfo(event) {
 function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
+  removeCards();
+  deck.shuffle(deck.cards);
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
   cardsBoard.classList.add("hidden");
@@ -69,9 +71,6 @@ function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
-
-  //this is the issue
-  deck.shuffle(deckOfCards);
   showCards();
 }
 
@@ -120,6 +119,12 @@ function showCards() {
   }
 }
 
+function removeCards() {
+  document.querySelector(".a").innerHTML = ``;
+  document.querySelector(".b").innerHTML = ``;
+  document.querySelector(".c").innerHTML = ``;
+}
+
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
   card.addEventListener("click", flipCard);
@@ -155,6 +160,15 @@ function resetDeck() {
   storedCards = [];
   disableBoard = false;
   playersTurn();
+}
+
+
+function resetGame() {
+  //if disableCards has run 5 times
+  //if all the cards are matchedCards
+  //congrats message
+  //reset the board and deck
+  deck.shuffle(deckOfCards);
 }
 
 
