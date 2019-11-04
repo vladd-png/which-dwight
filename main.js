@@ -33,6 +33,7 @@ var card8 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
 var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
 var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
+var deckOfCards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10];
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", savePlayerInfo);
@@ -68,6 +69,9 @@ function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
+
+  //this is the issue
+  deck.shuffle(deckOfCards);
   showCards();
 }
 
@@ -119,7 +123,7 @@ function showCards() {
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
   card.addEventListener("click", flipCard);
-  //foreach is an array prototype
+  //forEach is an array prototype
   //executes a provided function once for each array element
 });
 
@@ -152,5 +156,7 @@ function resetDeck() {
   disableBoard = false;
   playersTurn();
 }
+
+
 
 // ---------- Card Flip Animation ----------
