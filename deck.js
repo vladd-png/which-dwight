@@ -7,13 +7,13 @@ class Deck {
 
     this.value = card.value;
   }
+
   shuffle() {
-
   }
+
   checkSelectedCards() {
-
   }
+
   moveToMatched() {
-    
   }
 }

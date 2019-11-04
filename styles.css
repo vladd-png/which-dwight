@@ -163,8 +163,6 @@ p {
 }
 
 /* --------- Card Flip Animation ---------- */
-
-
 .single-card {
   width: calc(25% - 10px);
   position: relative;
@@ -197,10 +195,16 @@ p {
   transform: rotateY(180deg);
 }
 
+.fade {
+  visibility: hidden;
+  opacity: 0;
+  transition: delay 2s, visibility 0s 2s, opacity 2s linear;
+}
 
 /* --------- Overriding Styles ---------- */
 .hidden {
-  visibility: hidden;
+  display: none;
+  /* visibility: hidden; */
   height: 0px;
   margin: 0px;
   padding: 0px;

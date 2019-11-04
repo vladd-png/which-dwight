@@ -8,5 +8,3 @@ class Card {
     this.matched = true;
   }
 }
-
-// module.exports = Card;
