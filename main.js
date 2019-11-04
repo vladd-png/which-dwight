@@ -18,11 +18,11 @@ var flippedCardOver = false;
 var disableBoard = false;
 var firstCard, secondCard;
 var storedDeckOfCards = [];
-var card1 = new Card({idNumber: 1, "./assets/hannibal-dwight.png"});
-var card2 = new Card({idNumber: 2, "./assets/joker-dwight.png"});
-var card3 = new Card({idNumber: 3, "./assets/jim-dwight.png"});
-var card4 = new Card({idNumber: 4, "./assets/meredith-dwight.png"});
-var card5 = new Card({idNumber: 5, "./assets/kerrigan-dwight.png"});
+var card1 = new Card({idNumber: 1, imgSource: "/./assets/hannibal-dwight.png"});
+var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
+var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
+var card4 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
+var card5 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 // var playerName = "";
 
 // ---------- Event Listeners ----------
@@ -66,6 +66,7 @@ function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
+  showCards();
 }
 
 function enablePlayBtn(event) {
@@ -84,6 +85,44 @@ function saveName() {
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
 }
+
+// ---------- Card Creation ----------
+function showCards() {
+  // var cardRow = document.querySelector(".card-row");
+  // cards.innerHTML =
+  document.querySelector(".a").innerHTML=
+  `<div class="single-card" data-number="${card1.idNumber}">
+    <img class="front-face" src="${card1.imgSource}">
+    <img class="back-face" src="./assets/card-back.png">
+  </div>`;
+
+  document.querySelector(".b").innerHTML=
+  `<div class="single-card" data-number="${card2.idNumber}">
+    <img class="front-face" src="${card2.imgSource}">
+    <img class="back-face" src="./assets/card-back.png">
+  </div>`;
+
+  document.querySelector(".c").innerHTML=
+  `<div class="single-card" data-number="${card3.idNumber}">
+    <img class="front-face" src="${card3.imgSource}">
+    <img class="back-face" src="./assets/card-back.png">
+  </div>`;
+
+  document.querySelector(".d").innerHTML=
+  `<div class="single-card" data-number="${card4.idNumber}">
+    <img class="front-face" src="${card4.imgSource}">
+    <img class="back-face" src="./assets/card-back.png">
+  </div>`;
+
+  document.querySelector(".e").innerHTML=
+  `<div class="single-card" data-number="${card5.idNumber}">
+    <img class="front-face" src="${card5.imgSource}">
+    <img class="back-face" src="./assets/card-back.png">
+  </div>`;
+}
+
+
+
 
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
