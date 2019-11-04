@@ -17,13 +17,18 @@ var cards = document.querySelectorAll(".single-card");
 var flippedCardOver = false;
 var disableBoard = false;
 var firstCard, secondCard;
-var storedDeckOfCards = [];
-
-var card1 = new Card({idNumber: 1, imgSource: "assets/hannibal-dwight.png"});
-var card2 = new Card({idNumber: 2, imgSource: "assets/joker-dwight.png"});
-var card3 = new Card({idNumber: 3, imgSource: "assets/jim-dwight.png"});
-var card4 = new Card({idNumber: 4, imgSource: "assets/meredith-dwight.png"});
-var card5 = new Card({idNumber: 5, imgSource: "assets/kerrigan-dwight.png"});
+// var storedDeckOfCards = [];
+var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
+var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
+var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
+var card4 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
+var card5 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
+var card6 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
+var card7 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
+var card8 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
+var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
+var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
+var deckOfCards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]
 // var playerName = "";
 
 // ---------- Event Listeners ----------
@@ -89,58 +94,92 @@ function saveName() {
 
 // ---------- Card Creation ----------
 function showCards() {
-  // var cardRow = document.querySelector(".card-row");
-  // cards.innerHTML =
-  document.querySelector(".a").innerHTML=
-  `<div class="single-card" data-number="${card1.idNumber}">
-    <img class="front-face" src=${card1.imgSource}>
-    <img class="back-face" src="./assets/card-back.png">
-  </div>`;
-
-  document.querySelector(".b").innerHTML=
-  `<div class="single-card" data-number="${card2.idNumber}">
-    <img class="front-face" src=${card2.imgSource}>
-    <img class="back-face" src="./assets/card-back.png">
-  </div>`;
-
-  document.querySelector(".c").innerHTML=
-  `<div class="single-card" data-number="${card3.idNumber}">
-    <img class="front-face" src=${card3.imgSource}>
-    <img class="back-face" src="./assets/card-back.png">
-  </div>`;
-
-  document.querySelector(".d").innerHTML=
-  `<div class="single-card" data-number="${card4.idNumber}">
-    <img class="front-face" src=${card4.imgSource}>
-    <img class="back-face" src="./assets/card-back.png">
-  </div>`;
-
-  document.querySelector(".e").innerHTML=
-  `<div class="single-card" data-number="${card5.idNumber}">
-    <img class="front-face" src=${card5.imgSource}>
-    <img class="back-face" src="./assets/card-back.png">
-  </div>`;
+  for (var i = 0; i < 3; i++) {
+    document.querySelector(".a").innerHTML +=
+    `<div class="single-card" data-number="${deckOfCards[i].idNumber}">
+      <img class="front-face" src=${deckOfCards[i].imgSource}>
+      <img class="back-face" src="./assets/card-back.png">
+    </div>`;
+  }
+  for (var i = 3; i < 7; i++) {
+    document.querySelector(".b").innerHTML +=
+    `<div class="single-card" data-number="${deckOfCards[i].idNumber}">
+      <img class="front-face" src=${deckOfCards[i].imgSource}>
+      <img class="back-face" src="./assets/card-back.png">
+    </div>`;
+  }
+  for (var i = 7; i <= 9; i++) {
+    document.querySelector(".c").innerHTML +=
+    `<div class="single-card" data-number="${deckOfCards[i].idNumber}">
+      <img class="front-face" src=${deckOfCards[i].imgSource}>
+      <img class="back-face" src="./assets/card-back.png">
+    </div>`;
+  }
 }
+
+  //
+  //
+  // document.querySelector(".a").innerHTML=
+  // `<div class="single-card" data-number="${card1.idNumber}">
+  //   <img class="front-face" src=${card1.imgSource}>
+  //   <img class="back-face" src="./assets/card-back.png">
+  // </div>`;
+  //
+  // document.querySelector(".b").innerHTML=
+  // `<div class="single-card" data-number="${card2.idNumber}">
+  //   <img class="front-face" src=${card2.imgSource}>
+  //   <img class="back-face" src="./assets/card-back.png">
+  // </div>`;
+  //
+  // document.querySelector(".c").innerHTML=
+  // `<div class="single-card" data-number="${card3.idNumber}">
+  //   <img class="front-face" src=${card3.imgSource}>
+  //   <img class="back-face" src="./assets/card-back.png">
+  // </div>`;
+  //
+  // document.querySelector(".d").innerHTML=
+  // `<div class="single-card" data-number="${card4.idNumber}">
+  //   <img class="front-face" src=${card4.imgSource}>
+  //   <img class="back-face" src="./assets/card-back.png">
+  // </div>`;
+  //
+  // document.querySelector(".e").innerHTML=
+  // `<div class="single-card" data-number="${card5.idNumber}">
+  //   <img class="front-face" src=${card5.imgSource}>
+  //   <img class="back-face" src="./assets/card-back.png">
+  // </div>`;
+// }
 
 
 
 
 // ---------- Card Flip Animation ----------
-cards.forEach(function(card) {
-  card.addEventListener("click", flipCard);
+
+
+// card1.flipCard(card1);
+// card1.checkForMatch();
+// card1.disableCards();
+// card1.unflipCards();
+// card1.resetStoredCard();
+
+cards.forEach(function(card1) {
+  card1.addEventListener("click", flipCard);
   //foreach is an array prototype
   //executes a provided function once for each array element
 });
 
 function flipCard() {
-  //this = the element that is clicked - each card
+  console.log(event.target.closest("div"));
+  // this = the element that is clicked - each card
   if (disableBoard || this === firstCard) {
     return;
   }
-  this.classList.add("flip");
+  event.target.closest("div").classList.add("flip");
+  //.parentElement
+  //what thing did we click on - find the event- cahnge the one Event
   if (!flippedCardOver) {
     flippedCardOver = true;
-    firstCard = this;
+    firstCard = event.target;
     return;
   }
   secondCard = this;
@@ -183,6 +222,8 @@ function resetStoredCard() {
   firstCard = null;
   secondCard = null;
 }
+
+
 
 
 

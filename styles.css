@@ -164,7 +164,8 @@ p {
 
 /* --------- Card Flip Animation ---------- */
 .single-card {
-  width: calc(25% - 10px);
+  /* width: calc(25% - 10px); */
+  width: 48%;
   position: relative;
   margin: 5px;
   transform: scale(1);
