@@ -204,6 +204,19 @@ p {
   opacity: 0;
   transition: delay 2s, visibility 0s 2s, opacity 2s linear;
 }
+/* --------- End of Game ---------- */
+.game-ends {
+  position: absolute;
+  background-color: white;
+  top: 40%;
+  left: 25%;
+  width: 50%;
+  height: 40%;
+  text-align: center;
+  font-size: 45px;
+  padding-top: 5%;
+}
+
 
 /* --------- Overriding Styles ---------- */
 .hidden {

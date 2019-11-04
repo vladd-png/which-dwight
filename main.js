@@ -1,27 +1,30 @@
 // ---------- Global Variables ----------
-var playBtn = document.querySelector(".play-button");
-var navBar = document.querySelector(".top-nav");
-var formContainer = document.querySelector(".player-input-form");
-var directions = document.querySelector(".directions");
-var headerDwight = document.querySelector(".header");
-var startGameBtn = document.querySelector("#start-game");
-var gameBoard = document.querySelector(".game-board");
+var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
+var disableBoard = false;
+var directions = document.querySelector(".directions");
+var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
-var secondInput = document.querySelector("#two-name");
+var flippedCardOver = false;
+var formContainer = document.querySelector(".player-input-form");
+var gameBoard = document.querySelector(".game-board");
+var headerDwight = document.querySelector(".header");
+var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
-var rightHeaderName = document.querySelector(".right-header-name");
+var navBar = document.querySelector(".top-nav");
+var playBtn = document.querySelector(".play-button");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
-var leftColumn = document.querySelector(".player-left");
 var rightColumn = document.querySelector(".player-right");
-var cards = document.querySelectorAll(".single-card");
-var errorMsg = document.querySelector(".play-button");
-var flippedCardOver = false;
-var disableBoard = false;
+var rightHeaderName = document.querySelector(".right-header-name");
+var secondInput = document.querySelector("#two-name");
+var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
 
+var endOfGame = document.querySelector(".game-ends");
+
+// ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
 var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
@@ -54,7 +57,7 @@ function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
   removeCards();
-  deck.shuffle(deck.cards);
+  // deck.shuffle(deck.cards);
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
   cardsBoard.classList.add("hidden");
@@ -162,14 +165,8 @@ function resetDeck() {
 }
 
 
-function resetGame() {
-  //if disableCards has run 5 times
-  //if all the cards are matchedCards
-  //congrats message
-  //reset the board and deck
-  deck.shuffle(deckOfCards);
-}
-
-
-
-// ---------- Card Flip Animation ----------
+// ---------- Reset the Game ----------
+ function resetGame() {
+   endOfGame.classList.remove("hidden");
+   endOfGame.classList.add("game-ends");
+ }
