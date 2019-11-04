@@ -28,6 +28,7 @@ var card7 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
 var card8 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
 var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
 var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
+//var deck and when you instantiate the deck call all the card objects
 var deckOfCards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]
 // var playerName = "";
 
@@ -154,88 +155,59 @@ function showCards() {
 
 
 // ---------- Card Flip Animation ----------
-
-
-// card1.flipCard(card1);
-// card1.checkForMatch();
-// card1.disableCards();
-// card1.unflipCards();
-// card1.resetStoredCard();
-
-cards.forEach(function(card1) {
-  card1.addEventListener("click", saveCardOrder);
+cards.forEach(function(card) {
+  card.addEventListener("click", saveCardOrder);
   //foreach is an array prototype
   //executes a provided function once for each array element
 });
 
 function saveCardOrder() {
   var selectedCard = event.target.parentElement;
-  // var secondCard = event.target.closest("div");
-  var dataId = event.target.parentElement.dataset;
   selectedCard.classList.add("flippedOver");
   selectedCard.classList.add("flip");
-  //this above line flips - move to flip function once works
   storedCards.push(selectedCard);
-  console.log(storedCards);
-  //selectedCard.dataset = 1
-
-
-
-  if (storedCards.dataset === storedCards.dataset) {
-    console.log("works");
-    flippedCardOver = true;
-    return;
+  if(storedCards.length === 2) {
+    disableBoard = true;
+    checkForMatch();
   }
-  checkForMatch();
 }
 
 function flipCard() {
-  if (disableBoard || dataId === firstCard) {
-    return;
-  }
-  //.parentElement
-  //what thing did we click on - find the event- cahnge the one Event
+
 }
 
 function checkForMatch() {
-  if (firstCard.dataset.number === secondCard.dataset.number) {
-    disableCards();
+  if (storedCards[0].dataset.number === storedCards[1].dataset.number) {
+    flippedCardOver = true;
+    disableCards(event);
+    //match count increase
   } else {
-    unflipCards();
+    unflipCards(event);
   }
 }
 
-function disableCards() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
+function disableCards(event) {
+  var selectedCard = event.target.parentElement;
   setTimeout(fadeOut, 1000);
   function fadeOut() {
-    firstCard.classList.add("fade");
-    secondCard.classList.add("fade");
-    resetStoredCard();
+    storedCards[0].classList.add("fade");
+    storedCards[1].classList.add("fade");
+    storedCards = [];
+    disableBoard = false;
   }
 }
 
-function unflipCards() {
+function unflipCards(event) {
   disableBoard = true;
   setTimeout(resetCardAnimation, 1500);
   function resetCardAnimation() {
-    firstCard.classList.remove("flip");
-    secondCard.classList.remove("flip");
+    storedCards[0].classList.remove("flip");
+    storedCards[1].classList.remove("flip");
     disableBoard = false;
-    resetStoredCard();
+    storedCards = [];
+    disableBoard = false;
   }
 }
-
-function resetStoredCard() {
-  flippedCardOver = false;
-  disableBoard = false;
-  firstCard = null;
-  secondCard = null;
-}
-
-
-
 
 
 // ---------- Card Flip Animation ----------
