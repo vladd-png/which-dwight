@@ -13,11 +13,16 @@ var leftHeaderName = document.querySelector(".left-header-name");
 var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
+var leftColumn = document.querySelector(".player-left");
+var rightColumn = document.querySelector(".player-right");
 var cards = document.querySelectorAll(".single-card");
 var errorMsg = document.querySelector(".play-button");
 var flippedCardOver = false;
 var disableBoard = false;
 var storedCards = [];
+var turnCounter = 0;
+
+
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
 var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
@@ -120,50 +125,32 @@ cards.forEach(function(card) {
 });
 
 function flipCard() {
+  turnCounter++;
   var selectedCard = event.target.parentElement;
   selectedCard.classList.add("flippedOver");
   selectedCard.classList.add("flip");
   storedCards.push(selectedCard);
   if(storedCards.length === 2) {
     disableBoard = true;
-    checkForMatch();
+    deck.checkForMatch();
   }
 }
 
-function checkForMatch() {
-  if (storedCards[0].dataset.number === storedCards[1].dataset.number) {
-    flippedCardOver = true;
-    disableCards(event);
-    //match count increase
+function playersTurn() {
+  console.log(turnCounter);
+  if(turnCounter % 4 === 0) {
+    leftColumn.classList.add("player-active");
+    rightColumn.classList.remove("player-active");
   } else {
-    unflipCards(event);
-  }
-}
-
-function disableCards(event) {
-  var selectedCard = event.target.parentElement;
-  setTimeout(fadeOut, 1000);
-  function fadeOut() {
-    storedCards[0].classList.add("fade");
-    storedCards[1].classList.add("fade");
-    resetDeck();
-  }
-}
-
-function unflipCards(event) {
-  disableBoard = true;
-  setTimeout(resetCardAnimation, 1500);
-  function resetCardAnimation() {
-    storedCards[0].classList.remove("flip");
-    storedCards[1].classList.remove("flip");
-    disableBoard = false;
-    resetDeck();
+    rightColumn.classList.add("player-active");
+    leftColumn.classList.remove("player-active");
   }
 }
 
 function resetDeck() {
   storedCards = [];
   disableBoard = false;
+  playersTurn();
 }
 
 // ---------- Card Flip Animation ----------
