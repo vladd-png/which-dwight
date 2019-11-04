@@ -14,6 +14,7 @@ var rightHeaderName = document.querySelector(".right-header-name");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
 var cards = document.querySelectorAll(".single-card");
+var errorMsg = document.querySelector(".play-button");
 var flippedCardOver = false;
 var disableBoard = false;
 var firstCard, secondCard;
@@ -81,6 +82,7 @@ function enablePlayBtn(event) {
   if (firstInput.value === "") {
     //add an error message
   } else {
+    errorMsg.classList.remove("disabled-color");
     playBtn.classList.remove("disabled");
   }
 }
