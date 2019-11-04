@@ -53,6 +53,8 @@ function savePlayerInfo(event) {
 function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
+  removeCards();
+  deck.shuffle(deck.cards);
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
   cardsBoard.classList.add("hidden");
@@ -116,10 +118,16 @@ function showCards() {
   }
 }
 
+function removeCards() {
+  document.querySelector(".a").innerHTML = ``;
+  document.querySelector(".b").innerHTML = ``;
+  document.querySelector(".c").innerHTML = ``;
+}
+
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
   card.addEventListener("click", flipCard);
-  //foreach is an array prototype
+  //forEach is an array prototype
   //executes a provided function once for each array element
 });
 
@@ -152,5 +160,16 @@ function resetDeck() {
   disableBoard = false;
   playersTurn();
 }
+
+
+function resetGame() {
+  //if disableCards has run 5 times
+  //if all the cards are matchedCards
+  //congrats message
+  //reset the board and deck
+  deck.shuffle(deckOfCards);
+}
+
+
 
 // ---------- Card Flip Animation ----------

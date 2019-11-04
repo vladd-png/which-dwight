@@ -4,5 +4,4 @@ class Card {
     this.imgSource = card.imgSource;
     this.flippedCardOver = card.flippedCardOver;
   }
-
 }
