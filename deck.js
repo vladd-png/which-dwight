@@ -62,9 +62,4 @@ class Deck {
       showCountRight();
     }
   }
-
-  checkForWinner() {
-
-  }
-
 }
