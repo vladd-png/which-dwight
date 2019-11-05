@@ -244,6 +244,8 @@ h4 {
 
 .reset-cards,
 .reset-board {
+  color: white;
+  font-size: 20px;
   width: 70%;
   background-color: #BEB360;
   height: 35px;
