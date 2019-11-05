@@ -84,6 +84,8 @@ function resetCards() {
   endGame();
   removeCards();
   startGame();
+  activeLeft.classList.remove("hidden");
+  leftColumn.classList.add("player-active");  
 }
 
 function resetGame() {
