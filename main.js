@@ -275,8 +275,6 @@ function showCountLeft() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");
    endOfGame.innerHTML = ``;
-   deck.playerRightCount = 0;
-   deck.playerLeftCount = 0;
    disablePlayBtn();
    returnHome();
  }
@@ -284,8 +282,6 @@ function showCountLeft() {
  function resetCards() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");
-   deck.playerRightCount = 0;
-   deck.playerLeftCount = 0;
    removeCards();
    startGame();
  }
