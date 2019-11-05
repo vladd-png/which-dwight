@@ -30,7 +30,7 @@ class Deck {
       score.push(playerRightCount);
       showCountRight();
       showCountLeft();
-      setTimeout(showWinner, 1500);
+      setTimeout(showWinner, 1000);
     }
   }
 

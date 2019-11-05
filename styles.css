@@ -17,6 +17,8 @@ main {
   height: 80px;
   width: 80px;
   border: solid 10px black;
+  cursor: pointer;
+  
 }
 
 .top-nav {
@@ -234,7 +236,7 @@ h4 {
 }
 
 .skew-left {
-  transform: rotate(-15deg);
+  transform: rotate(-5deg);
 }
 
 .skew-large {
@@ -242,7 +244,7 @@ h4 {
 }
 
 .skew-small {
-  transform: rotate(-5deg);
+  transform: rotate(-15deg);
 }
 
 /* --------- End of Game ---------- */

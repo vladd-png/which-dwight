@@ -45,6 +45,8 @@ var twoName = document.querySelector(".player-two-name").value;
 var turnCounter = 0;
 var winner = document.querySelector("#winner");
 
+var heroMenu = document.querySelector("#menu-icon")
+
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
@@ -66,6 +68,7 @@ firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
 newGame.addEventListener("click", resetGame);
 rematchGame.addEventListener("click", resetCards);
+heroMenu.addEventListener("click", getData);
 
 // ---------- Helper Functions ----------
 function savePlayerInfo(event) {
@@ -85,7 +88,7 @@ function resetCards() {
   removeCards();
   startGame();
   activeLeft.classList.remove("hidden");
-  leftColumn.classList.add("player-active");  
+  leftColumn.classList.add("player-active");
 }
 
 function resetGame() {
@@ -158,7 +161,7 @@ function skewCards() {
 function showCards() {
   for (var i = 0; i < 3; i++) {
     skewCards();
-    document.querySelector(".a").innerHTML +=
+    document.querySelector(".top").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
@@ -167,7 +170,7 @@ function showCards() {
 
   for (var i = 3; i < 7; i++) {
     skewCards();
-    document.querySelector(".b").innerHTML +=
+    document.querySelector(".middle").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
@@ -176,7 +179,7 @@ function showCards() {
 
   for (var i = 7; i <= 9; i++) {
     skewCards();
-    document.querySelector(".c").innerHTML +=
+    document.querySelector(".bottom").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
@@ -277,17 +280,22 @@ function showCountLeft() {
   rightMatch.innerHTML = `<div class="match-title">${playerLeftCount}<div>`;
 }
 
-// ---------- Reset the Game ----------
+// ---------- End of Game ----------
 function saveData() {
-    var storedPlayer = [];
-    var storedScore = [];
-    storedScore.push(score);
-    storedPlayer.push(players);
-    var stringifiedPlayer = JSON.stringify(storedPlayer);
-    var stringifiedScore = JSON.stringify(storedScore);
-    localStorage.setItem('score', stringifiedScore);
-    localStorage.setItem('players', stringifiedPlayer);
+  var storedPlayer = [];
+  var storedScore = [];
+  storedScore.push(score);
+  storedPlayer.push(players);
+  var stringifiedPlayer = JSON.stringify(storedPlayer);
+  var stringifiedScore = JSON.stringify(storedScore);
+  localStorage.setItem('score', stringifiedScore);
+  localStorage.setItem('players', stringifiedPlayer);
+}
 
+function getData() {
+  var retrievedPlayers = localStorage.getItem(players);
+  var playerOutput = JSON.parse(retrievedPlayers);
+  console.log(playerOutput);
 }
 
  function endGame() {
