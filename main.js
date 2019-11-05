@@ -39,6 +39,8 @@ var roundTwoRight = document.querySelector(".win-2-right");
 var roundThreeRight = document.querySelector(".win-3-right");
 var playerLeftCount = 0;
 var playerRightCount = 0;
+var j = null;
+var skewDate = null;
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -52,6 +54,8 @@ var card8 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
 var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
 var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
+var skewPile = ['right', 'left', 'large', 'small'];
+
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", savePlayerInfo);
@@ -89,6 +93,7 @@ function startGame() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
+  skewCards();
   showCards();
   startTimer();
 }
@@ -114,24 +119,39 @@ function saveName() {
 }
 
 // ---------- Card Creation ----------
+
+function skewCards() {
+  var randomNum = getRandomInt(4);
+  skewData = skewPile[randomNum];
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 function showCards() {
   for (var i = 0; i < 3; i++) {
+    skewCards();
     document.querySelector(".a").innerHTML +=
-    `<div class="single-card ${skew}" data-number="${deck.cards[i].idNumber}">
+    `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
   }
+
   for (var i = 3; i < 7; i++) {
+    skewCards();
     document.querySelector(".b").innerHTML +=
-    `<div class="single-card ${skew}" data-number="${deck.cards[i].idNumber}">
+    `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
   }
+
   for (var i = 7; i <= 9; i++) {
+    skewCards();
     document.querySelector(".c").innerHTML +=
-    `<div class="single-card ${skew}" data-number="${deck.cards[i].idNumber}">
+    `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
@@ -143,6 +163,8 @@ function removeCards() {
   document.querySelector(".b").innerHTML = ``;
   document.querySelector(".c").innerHTML = ``;
 }
+
+
 
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
