@@ -1,27 +1,31 @@
 // ---------- Global Variables ----------
-var playBtn = document.querySelector(".play-button");
-var navBar = document.querySelector(".top-nav");
-var formContainer = document.querySelector(".player-input-form");
-var directions = document.querySelector(".directions");
-var headerDwight = document.querySelector(".header");
-var startGameBtn = document.querySelector("#start-game");
-var gameBoard = document.querySelector(".game-board");
+var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
+var disableBoard = false;
+var directions = document.querySelector(".directions");
+var endOfGame = document.querySelector(".game-ends-section");
+var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
-var secondInput = document.querySelector("#two-name");
+var flippedCardOver = false;
+var formContainer = document.querySelector(".player-input-form");
+var gameBoard = document.querySelector(".game-board");
+var headerDwight = document.querySelector(".header");
+var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
-var rightHeaderName = document.querySelector(".right-header-name");
+var navBar = document.querySelector(".top-nav");
+var newGame = document.querySelector(".reset-board");
+var playBtn = document.querySelector(".play-button");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
-var leftColumn = document.querySelector(".player-left");
+var rematchGame = document.querySelector(".reset-cards");
 var rightColumn = document.querySelector(".player-right");
-var cards = document.querySelectorAll(".single-card");
-var errorMsg = document.querySelector(".play-button");
-var flippedCardOver = false;
-var disableBoard = false;
+var rightHeaderName = document.querySelector(".right-header-name");
+var secondInput = document.querySelector("#two-name");
+var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
 
+// ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
 var card3 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
@@ -40,10 +44,10 @@ headerDwight.addEventListener("click", returnHome);
 startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
-
+newGame.addEventListener("click", resetGame);
+rematchGame.addEventListener("click", resetCards);
 
 // ---------- Helper Functions ----------
-
 function savePlayerInfo(event) {
   showDirections(event);
   saveName();
@@ -85,10 +89,10 @@ function enablePlayBtn(event) {
 
 // ---------- Player Information ----------
 function saveName() {
-  var oneName = document.querySelector(".player-one-name").value;
+  var oneName = document.querySelector(".player-one-name").value.toUpperCase();
   leftHeaderName.innerText = oneName;
   playerOneName.innerText = oneName;
-  var twoName = document.querySelector(".player-two-name").value;
+  var twoName = document.querySelector(".player-two-name").value.toUpperCase();
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
 }
@@ -138,6 +142,7 @@ function flipCard() {
   selectedCard.classList.add("flip");
   storedCards.push(selectedCard);
   if(storedCards.length === 2) {
+    cardsBoard.classList.add("no-click");
     disableBoard = true;
     deck.checkForMatch();
   }
@@ -159,17 +164,30 @@ function resetDeck() {
   storedCards = [];
   disableBoard = false;
   playersTurn();
+  cardsBoard.classList.remove("no-click");
 }
 
+// ---------- Reset the Game ----------
+ function showWinner() {
+   endOfGame.classList.remove("hidden");
+   endOfGame.classList.add("game-ends");
+   //push into leftHeaderName
+   //store winner name and amount of time
+   //date.now when you start
+   //date.now when you end
+   //subtract and refactor to minutes and seconds
+ }
 
-function resetGame() {
-  //if disableCards has run 5 times
-  //if all the cards are matchedCards
-  //congrats message
-  //reset the board and deck
-  deck.shuffle(deckOfCards);
-}
+ function resetGame() {
+   endOfGame.classList.add("hidden");
+   endOfGame.classList.remove("game-ends");
+   endOfGame.innerHTML = ``;
+   returnHome();
+ }
 
-
-
-// ---------- Card Flip Animation ----------
+ function resetCards() {
+   endOfGame.classList.add("hidden");
+   endOfGame.classList.remove("game-ends");
+   removeCards();
+   startGame();
+ }
