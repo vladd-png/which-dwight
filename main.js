@@ -6,6 +6,7 @@ var cardsBoard = document.querySelector(".playing-cards-board");
 var disableBoard = false;
 var directions = document.querySelector(".directions");
 var endOfGame = document.querySelector(".game-ends-section");
+var endTime = null;
 var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
 var flippedCardOver = false;
@@ -16,37 +17,31 @@ var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
 var navBar = document.querySelector(".top-nav");
 var newGame = document.querySelector(".reset-board");
+var oneName = document.querySelector(".player-one-name").value;
 var playBtn = document.querySelector(".play-button");
+var playerLeftCount = 0;
+var playerRightCount = 0;
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
 var rematchGame = document.querySelector(".reset-cards");
 var rightColumn = document.querySelector(".player-right");
 var rightHeaderName = document.querySelector(".right-header-name");
-var secondInput = document.querySelector("#two-name");
-var startGameBtn = document.querySelector("#start-game");
-var storedCards = [];
-var turnCounter = 0;
-
-var oneName = "";
-var twoName = "";
-
-var startTime = null;
-var endTime = null;
-var totalTime = null;
-var timer = document.querySelector(".timer-insert");
 var roundOneLeft = document.querySelector(".win-1-left");
-var roundTwoLeft = document.querySelector(".win-2-left");
 var roundThreeLeft = document.querySelector(".win-3-left");
+var roundTwoLeft = document.querySelector(".win-2-left");
 var roundOneRight = document.querySelector(".win-1-right");
-var roundTwoRight = document.querySelector(".win-2-right");
 var roundThreeRight = document.querySelector(".win-3-right");
-var playerLeftCount = 0;
-var playerRightCount = 0;
+var roundTwoRight = document.querySelector(".win-2-right");
+var secondInput = document.querySelector("#two-name");
 var skewPile = ['right', 'left', 'large', 'small'];
-var winner = document.querySelector("#winner");
+var startGameBtn = document.querySelector("#start-game");
+var startTime = null;
+var storedCards = [];
+var timer = document.querySelector(".timer-insert");
+var totalTime = null;
 var twoName = document.querySelector(".player-two-name").value;
-var oneName = document.querySelector(".player-one-name").value;
-
+var turnCounter = 0;
+var winner = document.querySelector("#winner");
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -61,7 +56,6 @@ var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
 var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
 
-
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", savePlayerInfo);
 headerDwight.addEventListener("click", returnHome);
@@ -75,6 +69,29 @@ rematchGame.addEventListener("click", resetCards);
 function savePlayerInfo(event) {
   showDirections(event);
   saveName();
+}
+
+function startGame() {
+  loadBoard();
+  skewCards();
+  showCards();
+  startTimer();
+}
+
+function resetCards() {
+  endGame();
+  removeCards();
+  startGame();
+}
+
+function resetGame() {
+  endGame();
+  disablePlayBtn();
+  returnHome();
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 // ---------- Page Changes ----------
@@ -93,14 +110,11 @@ function showDirections(event) {
   directions.classList.remove("hidden");
 }
 
-function startGame() {
+function loadBoard() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
   deck.shuffle(deck.cards);
-  skewCards();
-  showCards();
-  startTimer();
 }
 
 function enablePlayBtn(event) {
@@ -130,14 +144,9 @@ function saveName() {
 }
 
 // ---------- Card Creation ----------
-
 function skewCards() {
   var randomNum = getRandomInt(4);
   skewData = skewPile[randomNum];
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function showCards() {
@@ -232,14 +241,6 @@ function showWinner() {
   `;
 }
 
-// function showWinName() {
-//   if(checkScore) {
-//     winner.innerText = `${oneName} HAS WON`;
-//   } else {
-//     winner.innerText = `${twoName} HAS WON`;
-//   }
-// }
-
 function checkScore() {
   if (playerLeftCount > playerRightCount) {
     return true;
@@ -271,17 +272,8 @@ function showCountLeft() {
 }
 
 // ---------- Reset the Game ----------
- function resetGame() {
+ function endGame() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");
    endOfGame.innerHTML = ``;
-   disablePlayBtn();
-   returnHome();
- }
-
- function resetCards() {
-   endOfGame.classList.add("hidden");
-   endOfGame.classList.remove("game-ends");
-   removeCards();
-   startGame();
  }
