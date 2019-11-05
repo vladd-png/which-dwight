@@ -6,6 +6,7 @@ var cardsBoard = document.querySelector(".playing-cards-board");
 var disableBoard = false;
 var directions = document.querySelector(".directions");
 var endOfGame = document.querySelector(".game-ends-section");
+var endTime = null;
 var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
 var flippedCardOver = false;
@@ -16,31 +17,31 @@ var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
 var navBar = document.querySelector(".top-nav");
 var newGame = document.querySelector(".reset-board");
+var oneName = document.querySelector(".player-one-name").value;
 var playBtn = document.querySelector(".play-button");
+var playerLeftCount = 0;
+var playerRightCount = 0;
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
 var rematchGame = document.querySelector(".reset-cards");
 var rightColumn = document.querySelector(".player-right");
 var rightHeaderName = document.querySelector(".right-header-name");
-var secondInput = document.querySelector("#two-name");
-var startGameBtn = document.querySelector("#start-game");
-var storedCards = [];
-var turnCounter = 0;
-
-var startTime = null;
-var endTime = null;
-var totalTime = null;
-var timer = document.querySelector(".timer-insert");
 var roundOneLeft = document.querySelector(".win-1-left");
-var roundTwoLeft = document.querySelector(".win-2-left");
 var roundThreeLeft = document.querySelector(".win-3-left");
+var roundTwoLeft = document.querySelector(".win-2-left");
 var roundOneRight = document.querySelector(".win-1-right");
-var roundTwoRight = document.querySelector(".win-2-right");
 var roundThreeRight = document.querySelector(".win-3-right");
-var playerLeftCount = 0;
-var playerRightCount = 0;
-var j = null;
-var skewDate = null;
+var roundTwoRight = document.querySelector(".win-2-right");
+var secondInput = document.querySelector("#two-name");
+var skewPile = ['right', 'left', 'large', 'small'];
+var startGameBtn = document.querySelector("#start-game");
+var startTime = null;
+var storedCards = [];
+var timer = document.querySelector(".timer-insert");
+var totalTime = null;
+var twoName = document.querySelector(".player-two-name").value;
+var turnCounter = 0;
+var winner = document.querySelector("#winner");
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -54,8 +55,6 @@ var card8 = new Card({idNumber: 3, imgSource: "./assets/jim-dwight.png"});
 var card9 = new Card({idNumber: 4, imgSource: "./assets/meredith-dwight.png"});
 var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
-var skewPile = ['right', 'left', 'large', 'small'];
-
 
 // ---------- Event Listeners ----------
 playBtn.addEventListener("click", savePlayerInfo);
@@ -72,12 +71,34 @@ function savePlayerInfo(event) {
   saveName();
 }
 
+function startGame() {
+  loadBoard();
+  skewCards();
+  showCards();
+  startTimer();
+}
+
+function resetCards() {
+  endGame();
+  removeCards();
+  startGame();
+}
+
+function resetGame() {
+  endGame();
+  disablePlayBtn();
+  returnHome();
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 // ---------- Page Changes ----------
 function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
   removeCards();
-  deck.shuffle(deck.cards);
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
   cardsBoard.classList.add("hidden");
@@ -89,23 +110,25 @@ function showDirections(event) {
   directions.classList.remove("hidden");
 }
 
-function startGame() {
+function loadBoard() {
   directions.classList.add("hidden");
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
-  skewCards();
-  showCards();
-  startTimer();
+  deck.shuffle(deck.cards);
 }
 
 function enablePlayBtn(event) {
   event.preventDefault();
   if (firstInput.value === "") {
-    //add an error message
   } else {
     errorMsg.classList.remove("disabled-color");
     playBtn.classList.remove("disabled");
   }
+}
+
+function disablePlayBtn() {
+  errorMsg.classList.add("disabled-color");
+  playBtn.classList.add("disabled");
 }
 
 // ---------- Player Information ----------
@@ -113,20 +136,17 @@ function saveName() {
   var oneName = document.querySelector(".player-one-name").value.toUpperCase();
   leftHeaderName.innerText = oneName;
   playerOneName.innerText = oneName;
+  winner.innerText = `${oneName} HAS WON`;
   var twoName = document.querySelector(".player-two-name").value.toUpperCase();
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
+  winner.innerText = `${twoName} HAS WON`;
 }
 
 // ---------- Card Creation ----------
-
 function skewCards() {
   var randomNum = getRandomInt(4);
   skewData = skewPile[randomNum];
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function showCards() {
@@ -164,13 +184,9 @@ function removeCards() {
   document.querySelector(".c").innerHTML = ``;
 }
 
-
-
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
   card.addEventListener("click", flipCard);
-  //forEach is an array prototype
-  //executes a provided function once for each array element
 });
 
 function flipCard() {
@@ -213,16 +229,24 @@ function resetDeck() {
 function showWinner() {
   endTimer();
   logTime();
+  // showWinName();
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
+  activeLeft.classList.add("hidden");
+  activeRight.classList.add("hidden");
+  leftColumn.classList.remove("player-active");
+  rightColumn.classList.remove("player-active");
   timer.innerHTML = `
   <div class="timer">In ${totalTime} Seconds!</div>
   `;
-  //push into leftHeaderName
-  //store winner name and amount of time
-  //date.now when you start
-  //date.now when you end
-  //subtract and refactor to minutes and seconds
+}
+
+function checkScore() {
+  if (playerLeftCount > playerRightCount) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function startTimer() {
@@ -237,28 +261,19 @@ function logTime() {
   totalTime = (Math.floor(Math.floor(endTime - startTime) * 0.001));
 }
 
-function showCountLeft() {
+function showCountRight() {
   leftMatch = document.querySelector(".matches-left");
   leftMatch.innerHTML = `<div class="match-title">${playerRightCount}<div>`;
 }
 
-function showCountRight() {
+function showCountLeft() {
   rightMatch = document.querySelector(".matches-right");
-  rightMatch.innerHTML = `<div class="match-title">${playerRightCount}<div>`;
+  rightMatch.innerHTML = `<div class="match-title">${playerLeftCount}<div>`;
 }
 
 // ---------- Reset the Game ----------
-
- function resetGame() {
+ function endGame() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");
    endOfGame.innerHTML = ``;
-   returnHome();
- }
-
- function resetCards() {
-   endOfGame.classList.add("hidden");
-   endOfGame.classList.remove("game-ends");
-   removeCards();
-   startGame();
  }

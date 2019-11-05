@@ -26,10 +26,10 @@ class Deck {
       resetDeck();
     }
     if(this.matches % 5 === 0) {
+      this.matches = 0;
       showWinner();
     }
   }
-
 
   unflipCards(event) {
     disableBoard = true;
@@ -56,15 +56,10 @@ class Deck {
     console.log();
     if(turnCounter % 4 === 0) {
       playerLeftCount++;
-      showCountRight();
+      showCountLeft();
     } else {
       playerRightCount++;
-      showCountLeft();
+      showCountRight();
     }
-    //check the player who's turn it is with hidden
-    //increase the match count for that player
-    //needs to be two counters
   }
-
-
 }
