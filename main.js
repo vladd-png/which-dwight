@@ -176,6 +176,8 @@ function resetDeck() {
  }
 
  function resetGame() {
+   endOfGame.classList.add("hidden");
+   endOfGame.classList.remove("game-ends");
    endOfGame.innerHTML = ``;
    returnHome();
  }
