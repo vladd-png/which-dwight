@@ -26,6 +26,8 @@ var secondInput = document.querySelector("#two-name");
 var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
+var startTime = null;
+var endTime = null;
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -77,6 +79,7 @@ function startGame() {
   gameBoard.classList.remove("hidden");
   cardsBoard.classList.remove("hidden");
   showCards();
+  startTimer();
 }
 
 function enablePlayBtn(event) {
@@ -173,16 +176,35 @@ function resetDeck() {
   cardsBoard.classList.remove("no-click");
 }
 
+function showWinner() {
+  endTimer();
+  console.log(startTime);
+  console.log(endTime);
+
+  endOfGame.classList.remove("hidden");
+  endOfGame.classList.add("game-ends");
+  //push into leftHeaderName
+  //store winner name and amount of time
+  //date.now when you start
+  //date.now when you end
+  //subtract and refactor to minutes and seconds
+}
+// ---------- Player Data ----------
+function startTimer() {
+  startTime = Date.now();
+}
+
+function endTimer() {
+  endTime = Date.now();
+}
+
+
+//flip the card start the timer.
+function logTime() {
+  var total = endTime - startTime;
+}
+
 // ---------- Reset the Game ----------
- function showWinner() {
-   endOfGame.classList.remove("hidden");
-   endOfGame.classList.add("game-ends");
-   //push into leftHeaderName
-   //store winner name and amount of time
-   //date.now when you start
-   //date.now when you end
-   //subtract and refactor to minutes and seconds
- }
 
  function resetGame() {
    endOfGame.classList.add("hidden");
