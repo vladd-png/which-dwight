@@ -179,8 +179,13 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
-  justify-content: space-around;
+  justify-content: center;
   margin: 5px;
+}
+
+.matches-left,
+.matches-right {
+  font-size: 35px;
 }
 
 /* --------- Card Flip Animation ---------- */
@@ -194,6 +199,7 @@ h4 {
   display: flex;
   align-content: space-between;
   justify-content: space-around;
+  padding: 10px;
 }
 
 .front-face,
@@ -222,6 +228,23 @@ h4 {
   opacity: 0;
   transition: delay 2s, visibility 0s 2s, opacity 2s linear;
 }
+
+.skew-right {
+  transform: rotate(5deg);
+}
+
+.skew-left {
+  transform: rotate(-15deg);
+}
+
+.skew-large {
+  transform: rotate(15deg);
+}
+
+.skew-small {
+  transform: rotate(-5deg);
+}
+
 /* --------- End of Game ---------- */
 .game-ends-section {
   position: absolute;
@@ -231,7 +254,7 @@ h4 {
   width: 50%;
   height: 40%;
   text-align: center;
-  padding-top: 5%;
+  padding-top: 3%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;

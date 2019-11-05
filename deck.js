@@ -1,23 +1,20 @@
 class Deck {
   constructor(card) {
     this.cards = card;
-    this.matchedCards = null;
+    this.matchedCards = 0;
     this.selectedCards = null;
     this.matches = 0;
     this.value = card.value;
   }
 
-shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+  shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tempNum = array[i];
+        array[i] = array[j];
+        array[j] = tempNum;
+    }
   }
-  return array;
-}
 
   disableCards(event) {
     this.matches++;
@@ -32,6 +29,7 @@ shuffle(array) {
       showWinner();
     }
   }
+
 
   unflipCards(event) {
     disableBoard = true;
@@ -48,9 +46,25 @@ shuffle(array) {
     if (storedCards[0].dataset.number === storedCards[1].dataset.number) {
       flippedCardOver = true;
       this.disableCards(event);
-      //match count increase
-    } else {
-      this.unflipCards(event);
+      this.showMatchCount(event);
+      } else {
+        this.unflipCards(event);
+      }
     }
+
+  showMatchCount() {
+    console.log();
+    if(turnCounter % 4 === 0) {
+      playerLeftCount++;
+      showCountRight();
+    } else {
+      playerRightCount++;
+      showCountLeft();
+    }
+    //check the player who's turn it is with hidden
+    //increase the match count for that player
+    //needs to be two counters
   }
+
+
 }
