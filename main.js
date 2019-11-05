@@ -107,6 +107,11 @@ function enablePlayBtn(event) {
   }
 }
 
+function disablePlayBtn() {
+  errorMsg.classList.add("disabled-color");
+  playBtn.classList.add("disabled");
+}
+
 // ---------- Player Information ----------
 function saveName() {
   var oneName = document.querySelector(".player-one-name").value.toUpperCase();
