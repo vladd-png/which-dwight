@@ -61,7 +61,7 @@ function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
   removeCards();
-  // deck.shuffle(deck.cards);
+  deck.shuffle(deck.cards);
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
   cardsBoard.classList.add("hidden");

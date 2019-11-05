@@ -28,7 +28,7 @@ shuffle(array) {
       storedCards[1].classList.add("fade");
       resetDeck();
     }
-    if(this.matches === 5) {
+    if(this.matches % 5 === 0) {
       showWinner();
     }
   }
