@@ -3,7 +3,6 @@ var activeLeft = document.querySelector(".active-left");
 var activeRight = document.querySelector(".active-right");
 var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
-var disableBoard = false;
 var directions = document.querySelector(".directions");
 var endOfGame = document.querySelector(".game-ends-section");
 var endTime = null;
@@ -197,7 +196,6 @@ function flipCard() {
   storedCards.push(selectedCard);
   if(storedCards.length === 2) {
     cardsBoard.classList.add("no-click");
-    disableBoard = true;
     deck.checkForMatch();
   }
 }
@@ -220,7 +218,6 @@ function playersTurn() {
 
 function resetDeck() {
   storedCards = [];
-  disableBoard = false;
   playersTurn();
   cardsBoard.classList.remove("no-click");
 }
