@@ -26,10 +26,19 @@ var secondInput = document.querySelector("#two-name");
 var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
+
 var startTime = null;
 var endTime = null;
 var totalTime = null;
 var timer = document.querySelector(".timer-insert");
+var roundOneLeft = document.querySelector(".win-1-left");
+var roundTwoLeft = document.querySelector(".win-2-left");
+var roundThreeLeft = document.querySelector(".win-3-left");
+var roundOneRight = document.querySelector(".win-1-right");
+var roundTwoRight = document.querySelector(".win-2-right");
+var roundThreeRight = document.querySelector(".win-3-right");
+var playerLeftCount = 0;
+var playerRightCount = 0;
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -108,21 +117,21 @@ function saveName() {
 function showCards() {
   for (var i = 0; i < 3; i++) {
     document.querySelector(".a").innerHTML +=
-    `<div class="single-card" data-number="${deck.cards[i].idNumber}">
+    `<div class="single-card ${skew}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
   }
   for (var i = 3; i < 7; i++) {
     document.querySelector(".b").innerHTML +=
-    `<div class="single-card" data-number="${deck.cards[i].idNumber}">
+    `<div class="single-card ${skew}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
   }
   for (var i = 7; i <= 9; i++) {
     document.querySelector(".c").innerHTML +=
-    `<div class="single-card" data-number="${deck.cards[i].idNumber}">
+    `<div class="single-card ${skew}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
@@ -165,8 +174,8 @@ function playersTurn() {
     } else {
       rightColumn.classList.add("player-active");
       leftColumn.classList.remove("player-active");
-      activeLeft.classList.add("hidden");
       activeRight.classList.remove("hidden");
+      activeLeft.classList.add("hidden");
     }
   }
 }
@@ -178,12 +187,13 @@ function resetDeck() {
   cardsBoard.classList.remove("no-click");
 }
 
+// ---------- Player Data ----------
 function showWinner() {
   endTimer();
   logTime();
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
-  timer.innerHTML += `
+  timer.innerHTML = `
   <div class="timer">In ${totalTime} Seconds!</div>
   `;
   //push into leftHeaderName
@@ -192,7 +202,7 @@ function showWinner() {
   //date.now when you end
   //subtract and refactor to minutes and seconds
 }
-// ---------- Player Data ----------
+
 function startTimer() {
   startTime = Date.now();
 }
@@ -202,7 +212,17 @@ function endTimer() {
 }
 
 function logTime() {
-  totalTime = ((endTime - startTime) * 0.001);
+  totalTime = (Math.floor(Math.floor(endTime - startTime) * 0.001));
+}
+
+function showCountLeft() {
+  leftMatch = document.querySelector(".matches-left");
+  leftMatch.innerHTML = `<div class="match-title">${playerRightCount}<div>`;
+}
+
+function showCountRight() {
+  rightMatch = document.querySelector(".matches-right");
+  rightMatch.innerHTML = `<div class="match-title">${playerRightCount}<div>`;
 }
 
 // ---------- Reset the Game ----------

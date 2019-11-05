@@ -183,6 +183,11 @@ h4 {
   margin: 5px;
 }
 
+.matches-left,
+.matches-right {
+  font-size: 35px;
+}
+
 /* --------- Card Flip Animation ---------- */
 .single-card {
   width: calc(70% - 5px);
