@@ -1,4 +1,6 @@
 // ---------- Global Variables ----------
+var activeLeft = document.querySelector(".active-left");
+var activeRight = document.querySelector(".active-right");
 var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
 var disableBoard = false;
@@ -153,9 +155,13 @@ function playersTurn() {
     if(turnCounter % 4 === 0) {
       leftColumn.classList.add("player-active");
       rightColumn.classList.remove("player-active");
+      activeLeft.classList.remove("hidden");
+      activeRight.classList.add("hidden");
     } else {
       rightColumn.classList.add("player-active");
       leftColumn.classList.remove("player-active");
+      activeLeft.classList.add("hidden");
+      activeRight.classList.remove("hidden");
     }
   }
 }

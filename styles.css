@@ -145,6 +145,12 @@ h4 {
   margin-bottom: 15px;
 }
 
+.active-right,
+.active-left {
+  font-size: 20px;
+  color: white;
+}
+
 .game-board {
   background-color: rgba( 255, 255, 255, 0.8);
   display: flex;
@@ -238,6 +244,8 @@ h4 {
 
 .reset-cards,
 .reset-board {
+  color: white;
+  font-size: 20px;
   width: 70%;
   background-color: #BEB360;
   height: 35px;
