@@ -26,11 +26,11 @@ class Deck {
     }
     if(this.matches % 5 === 0) {
       this.matches = 0;
-      playerRightCount = 0;
-      playerLeftCount = 0;
+      score.push(playerLeftCount);
+      score.push(playerRightCount);
       showCountRight();
       showCountLeft();
-      showWinner();
+      setTimeout(showWinner, 1500);
     }
   }
 

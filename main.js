@@ -232,6 +232,8 @@ function showWinner() {
   saveData();
   endTimer();
   logTime();
+  playerRightCount = 0;
+  playerLeftCount = 0;
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
   activeLeft.classList.add("hidden");
@@ -266,25 +268,24 @@ function logTime() {
 function showCountRight() {
   leftMatch = document.querySelector(".matches-left");
   leftMatch.innerHTML = `<div class="match-title">${playerRightCount}<div>`;
-  if (deck.matches % 5 === 0) {
-    score.push(playerRightCount);
-  }
 }
 
 function showCountLeft() {
   rightMatch = document.querySelector(".matches-right");
   rightMatch.innerHTML = `<div class="match-title">${playerLeftCount}<div>`;
-  if (deck.matches % 5 === 0) {
-    score.push(playerLeftCount);
-  }
 }
 
 // ---------- Reset the Game ----------
 function saveData() {
-    var storedData = [];
-    storedData.push(score, players);
-    var stringified = JSON.stringify(storedData);
-    localStorage.setItem('scoreAndPlayers', stringified);
+    var storedPlayer = [];
+    var storedScore = [];
+    storedScore.push(score);
+    storedPlayer.push(players);
+    var stringifiedPlayer = JSON.stringify(storedPlayer);
+    var stringifiedScore = JSON.stringify(storedScore);
+    localStorage.setItem('score', stringifiedScore);
+    localStorage.setItem('players', stringifiedPlayer);
+
 }
 
  function endGame() {
