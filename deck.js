@@ -63,5 +63,8 @@ class Deck {
     }
   }
 
+  checkForWinner() {
+    
+  }
 
 }

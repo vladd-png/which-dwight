@@ -27,6 +27,9 @@ var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
 
+var oneName = "";
+var twoName = "";
+
 var startTime = null;
 var endTime = null;
 var totalTime = null;
@@ -40,6 +43,10 @@ var roundThreeRight = document.querySelector(".win-3-right");
 var playerLeftCount = 0;
 var playerRightCount = 0;
 var skewPile = ['right', 'left', 'large', 'small'];
+var winner = document.querySelector("#winner");
+var twoName = document.querySelector(".player-two-name").value;
+var oneName = document.querySelector(".player-one-name").value;
+
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -75,7 +82,6 @@ function returnHome() {
   formContainer.classList.remove("hidden");
   formContainer.reset();
   removeCards();
-  deck.shuffle(deck.cards);
   directions.classList.add("hidden");
   gameBoard.classList.add("hidden");
   cardsBoard.classList.add("hidden");
@@ -100,7 +106,6 @@ function startGame() {
 function enablePlayBtn(event) {
   event.preventDefault();
   if (firstInput.value === "") {
-    //add an error message
   } else {
     errorMsg.classList.remove("disabled-color");
     playBtn.classList.remove("disabled");
@@ -117,9 +122,11 @@ function saveName() {
   var oneName = document.querySelector(".player-one-name").value.toUpperCase();
   leftHeaderName.innerText = oneName;
   playerOneName.innerText = oneName;
+  winner.innerText = `${oneName} HAS WON`;
   var twoName = document.querySelector(".player-two-name").value.toUpperCase();
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
+  winner.innerText = `${twoName} HAS WON`;
 }
 
 // ---------- Card Creation ----------
@@ -171,8 +178,6 @@ function removeCards() {
 // ---------- Card Flip Animation ----------
 cards.forEach(function(card) {
   card.addEventListener("click", flipCard);
-  //forEach is an array prototype
-  //executes a provided function once for each array element
 });
 
 function flipCard() {
@@ -215,11 +220,28 @@ function resetDeck() {
 function showWinner() {
   endTimer();
   logTime();
+  // showWinName();
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
   timer.innerHTML = `
   <div class="timer">In ${totalTime} Seconds!</div>
   `;
+}
+
+// function showWinName() {
+//   if(checkScore) {
+//     winner.innerText = `${oneName} HAS WON`;
+//   } else {
+//     winner.innerText = `${twoName} HAS WON`;
+//   }
+// }
+
+function checkScore() {
+  if (playerLeftCount > playerRightCount) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function startTimer() {
