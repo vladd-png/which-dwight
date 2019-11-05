@@ -223,6 +223,10 @@ function showWinner() {
   // showWinName();
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
+  activeLeft.classList.add("hidden");
+  activeRight.classList.add("hidden");
+  leftColumn.classList.remove("player-active");
+  rightColumn.classList.remove("player-active");
   timer.innerHTML = `
   <div class="timer">In ${totalTime} Seconds!</div>
   `;
