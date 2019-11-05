@@ -145,6 +145,11 @@ h4 {
   margin-bottom: 15px;
 }
 
+.current-player {
+  color: magenta;
+  font-size: 35px;
+}
+
 .game-board {
   background-color: rgba( 255, 255, 255, 0.8);
   display: flex;
