@@ -257,3 +257,7 @@ h4 {
 .player-active {
   background-color: #D6AA85;
 }
+
+.no-click {
+  pointer-events: none;
+}

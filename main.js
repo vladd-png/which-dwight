@@ -3,6 +3,7 @@ var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
 var disableBoard = false;
 var directions = document.querySelector(".directions");
+var endOfGame = document.querySelector(".game-ends-section");
 var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
 var flippedCardOver = false;
@@ -12,19 +13,17 @@ var headerDwight = document.querySelector(".header");
 var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
 var navBar = document.querySelector(".top-nav");
+var newGame = document.querySelector(".reset-board");
 var playBtn = document.querySelector(".play-button");
 var playerOneName = document.getElementById("player-one");
 var playerTwoName = document.getElementById("player-two");
+var rematchGame = document.querySelector(".reset-cards");
 var rightColumn = document.querySelector(".player-right");
 var rightHeaderName = document.querySelector(".right-header-name");
 var secondInput = document.querySelector("#two-name");
 var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
-
-var endOfGame = document.querySelector(".game-ends-section");
-var rematchGame = document.querySelector(".reset-cards");
-var newGame = document.querySelector(".reset-board");
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -48,9 +47,7 @@ secondInput.addEventListener("keyup", enablePlayBtn);
 newGame.addEventListener("click", resetGame);
 rematchGame.addEventListener("click", resetCards);
 
-
 // ---------- Helper Functions ----------
-
 function savePlayerInfo(event) {
   showDirections(event);
   saveName();
@@ -145,6 +142,7 @@ function flipCard() {
   selectedCard.classList.add("flip");
   storedCards.push(selectedCard);
   if(storedCards.length === 2) {
+    cardsBoard.classList.add("no-click");
     disableBoard = true;
     deck.checkForMatch();
   }
@@ -166,13 +164,18 @@ function resetDeck() {
   storedCards = [];
   disableBoard = false;
   playersTurn();
+  cardsBoard.classList.remove("no-click");
 }
-
 
 // ---------- Reset the Game ----------
  function showWinner() {
    endOfGame.classList.remove("hidden");
    endOfGame.classList.add("game-ends");
+   //push into leftHeaderName
+   //store winner name and amount of time
+   //date.now when you start
+   //date.now when you end
+   //subtract and refactor to minutes and seconds
  }
 
  function resetGame() {
