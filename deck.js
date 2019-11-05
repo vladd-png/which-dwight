@@ -29,7 +29,7 @@ shuffle(array) {
       resetDeck();
     }
     if(this.matches === 5) {
-      resetGame();
+      showWinner();
     }
   }
 

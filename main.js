@@ -22,7 +22,9 @@ var startGameBtn = document.querySelector("#start-game");
 var storedCards = [];
 var turnCounter = 0;
 
-var endOfGame = document.querySelector(".game-ends");
+var endOfGame = document.querySelector(".game-ends-section");
+var rematchGame = document.querySelector(".reset-cards");
+var newGame = document.querySelector(".reset-board");
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -43,6 +45,8 @@ headerDwight.addEventListener("click", returnHome);
 startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
 secondInput.addEventListener("keyup", enablePlayBtn);
+newGame.addEventListener("click", resetGame);
+rematchGame.addEventListener("click", resetCards);
 
 
 // ---------- Helper Functions ----------
@@ -166,7 +170,17 @@ function resetDeck() {
 
 
 // ---------- Reset the Game ----------
- function resetGame() {
+ function showWinner() {
    endOfGame.classList.remove("hidden");
    endOfGame.classList.add("game-ends");
+ }
+
+ function resetGame() {
+   returnHome();
+ }
+
+ function resetCards() {
+   endOfGame.classList.add("hidden");
+   endOfGame.classList.remove("game-ends");
+   startGame();
  }
