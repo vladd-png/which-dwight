@@ -30,7 +30,6 @@ class Deck {
     }
   }
 
-
   unflipCards(event) {
     disableBoard = true;
     setTimeout(resetCardAnimation, 1500);
@@ -56,10 +55,10 @@ class Deck {
     console.log();
     if(turnCounter % 4 === 0) {
       playerLeftCount++;
-      showCountRight();
+      showCountLeft();
     } else {
       playerRightCount++;
-      showCountLeft();
+      showCountRight();
     }
     //check the player who's turn it is with hidden
     //increase the match count for that player
