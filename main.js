@@ -283,7 +283,8 @@ function showCountLeft() {
 function saveData() {
     var storedData = [];
     storedData.push(score, players);
-    localStorage.setItem.stringify(storedData);
+    var stringified = JSON.stringify(storedData);
+    localStorage.setItem('scoreAndPlayers', stringified);
 }
 
  function endGame() {
