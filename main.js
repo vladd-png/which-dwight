@@ -5,6 +5,7 @@ var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
 var directions = document.querySelector(".directions");
 var endOfGame = document.querySelector(".game-ends-section");
+var disableBoard = false;
 var endTime = null;
 var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
@@ -21,6 +22,7 @@ var playBtn = document.querySelector(".play-button");
 var playerLeftCount = 0;
 var playerRightCount = 0;
 var playerOneName = document.getElementById("player-one");
+var players = [];
 var playerTwoName = document.getElementById("player-two");
 var rematchGame = document.querySelector(".reset-cards");
 var rightColumn = document.querySelector(".player-right");
@@ -31,6 +33,7 @@ var roundTwoLeft = document.querySelector(".win-2-left");
 var roundOneRight = document.querySelector(".win-1-right");
 var roundThreeRight = document.querySelector(".win-3-right");
 var roundTwoRight = document.querySelector(".win-2-right");
+var score = [];
 var secondInput = document.querySelector("#two-name");
 var skewPile = ['right', 'left', 'large', 'small'];
 var startGameBtn = document.querySelector("#start-game");
@@ -135,10 +138,12 @@ function saveName() {
   var oneName = document.querySelector(".player-one-name").value.toUpperCase();
   leftHeaderName.innerText = oneName;
   playerOneName.innerText = oneName;
+  players.push(oneName);
   winner.innerText = `${oneName} HAS WON`;
   var twoName = document.querySelector(".player-two-name").value.toUpperCase();
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
+  players.push(twoName);
   winner.innerText = `${twoName} HAS WON`;
 }
 
@@ -224,9 +229,9 @@ function resetDeck() {
 
 // ---------- Player Data ----------
 function showWinner() {
+  saveData();
   endTimer();
   logTime();
-  // showWinName();
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
   activeLeft.classList.add("hidden");
@@ -261,14 +266,26 @@ function logTime() {
 function showCountRight() {
   leftMatch = document.querySelector(".matches-left");
   leftMatch.innerHTML = `<div class="match-title">${playerRightCount}<div>`;
+  if (deck.matches % 5 === 0) {
+    score.push(playerRightCount);
+  }
 }
 
 function showCountLeft() {
   rightMatch = document.querySelector(".matches-right");
   rightMatch.innerHTML = `<div class="match-title">${playerLeftCount}<div>`;
+  if (deck.matches % 5 === 0) {
+    score.push(playerLeftCount);
+  }
 }
 
 // ---------- Reset the Game ----------
+function saveData() {
+    var storedData = [];
+    storedData.push(score, players);
+    localStorage.setItem.stringify(storedData);
+}
+
  function endGame() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");

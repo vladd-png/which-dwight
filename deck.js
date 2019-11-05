@@ -2,7 +2,6 @@ class Deck {
   constructor(card) {
     this.cards = card;
     this.matchedCards = 0;
-    this.selectedCards = null;
     this.matches = 0;
     this.value = card.value;
   }
@@ -27,17 +26,19 @@ class Deck {
     }
     if(this.matches % 5 === 0) {
       this.matches = 0;
+      playerRightCount = 0;
+      playerLeftCount = 0;
+      showCountRight();
+      showCountLeft();
       showWinner();
     }
   }
 
   unflipCards(event) {
-    disableBoard = true;
     setTimeout(resetCardAnimation, 1500);
     function resetCardAnimation() {
       storedCards[0].classList.remove("flip");
       storedCards[1].classList.remove("flip");
-      disableBoard = false;
       resetDeck();
     }
   }
