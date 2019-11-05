@@ -28,6 +28,8 @@ var storedCards = [];
 var turnCounter = 0;
 var startTime = null;
 var endTime = null;
+var totalTime = null;
+var timer = document.querySelector(".timer-insert");
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -178,11 +180,12 @@ function resetDeck() {
 
 function showWinner() {
   endTimer();
-  console.log(startTime);
-  console.log(endTime);
-
+  logTime();
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
+  timer.innerHTML += `
+  <div class="timer">In ${totalTime} Seconds!</div>
+  `;
   //push into leftHeaderName
   //store winner name and amount of time
   //date.now when you start
@@ -198,10 +201,8 @@ function endTimer() {
   endTime = Date.now();
 }
 
-
-//flip the card start the timer.
 function logTime() {
-  var total = endTime - startTime;
+  totalTime = ((endTime - startTime) * 0.001);
 }
 
 // ---------- Reset the Game ----------
