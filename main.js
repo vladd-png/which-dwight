@@ -92,10 +92,10 @@ function enablePlayBtn(event) {
 
 // ---------- Player Information ----------
 function saveName() {
-  var oneName = document.querySelector(".player-one-name").value;
+  var oneName = document.querySelector(".player-one-name").value.toUpperCase();
   leftHeaderName.innerText = oneName;
   playerOneName.innerText = oneName;
-  var twoName = document.querySelector(".player-two-name").value;
+  var twoName = document.querySelector(".player-two-name").value.toUpperCase();
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
 }
@@ -182,5 +182,6 @@ function resetDeck() {
  function resetCards() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");
+   removeCards();
    startGame();
  }
