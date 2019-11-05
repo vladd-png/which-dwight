@@ -176,6 +176,7 @@ function resetDeck() {
  }
 
  function resetGame() {
+   endOfGame.innerHTML = ``;
    returnHome();
  }
 
