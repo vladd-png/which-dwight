@@ -26,6 +26,7 @@ class Deck {
       resetDeck();
     }
     if(this.matches % 5 === 0) {
+      this.matches = 0;
       showWinner();
     }
   }
@@ -60,9 +61,6 @@ class Deck {
       playerRightCount++;
       showCountRight();
     }
-    //check the player who's turn it is with hidden
-    //increase the match count for that player
-    //needs to be two counters
   }
 
 

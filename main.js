@@ -251,8 +251,8 @@ function showCountLeft() {
    endOfGame.innerHTML = ``;
    deck.playerRightCount = 0;
    deck.playerLeftCount = 0;
-   returnHome();
    disablePlayBtn();
+   returnHome();
  }
 
  function resetCards() {
