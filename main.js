@@ -294,10 +294,10 @@ function saveData() {
 function getData() {
   var retrievedPlayers = JSON.parse(localStorage.getItem("players"));
   var retrievedScore = JSON.parse(localStorage.getItem("score"));
-  var dropDown = document.querySelector(".dropd-down")
+  var dropDown = document.querySelector(".drop-down")
   console.log(retrievedScore[0]);
   console.log(retrievedPlayers[0]);
-  dropDown.innerHTML += `${retrievedPlayers[0]} ${retrievedScore[0]}` ;
+  dropDown.innerHTML += `<span class="player-active">${retrievedPlayers[0]} ${retrievedScore[0]}</span>` ;
 
 }
 
