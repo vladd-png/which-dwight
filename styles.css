@@ -2,28 +2,28 @@
 *:after,
 *:before {
   box-sizing: border-box;
-  margin: 0px;
   font-family: "Open Sans", sans-serif;
+  margin: 0px;
 }
 
 main {
   background-image: url("./assets/wallpaper.jpg");
-  background-size: stretch;
   background-repeat: no-repeat;
+  background-size: stretch;
   height: 100%;
 }
 
 #menu-icon {
-  height: 80px;
-  width: 80px;
   border: solid 10px black;
   cursor: pointer;
+  height: 80px;
+  width: 80px;
 
 }
 
 .top-nav {
-  display: flex;
   background-color: white;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -33,10 +33,10 @@ main {
 }
 
 h1 {
-  display: flex;
   align-items: center;
-  font-size: 50px;
   color: #5D4A44;
+  display: flex;
+  font-size: 50px;
 }
 
 .header {
@@ -44,33 +44,33 @@ h1 {
 }
 
 .drop-down-menu {
-  position: absolute;
-  display: block;
-  width: 300px;;
-  height: 100%;
   background-color: black;
   color: white;
+  display: block;
   font-size: 40px;
-  text-align: center;
+  height: 100%;
   margin-bottom: 15px;
+  position: absolute;
+  text-align: center;
+  width: 300px;;
 }
 
 h5 {
-  font-size: 20px;
   color: #5D4A44;
-  padding: 5px;
+  font-size: 20px;
   font-weight: normal;
-  text-align: left;
+  padding: 5px;
   padding-left: 30px;
+  text-align: left;
 }
 
 /* --------- Player Input Page ---------- */
 .player-input-form {
   display: flex;
   flex-direction: row;
-  margin-top: 20%;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20%;
 }
 
 .player-one,
@@ -82,29 +82,29 @@ h5 {
 
 .player-one-name,
 .player-two-name {
-  height: 50px;
-  font-size: 24px;
   border-radius: 4px;
+  font-size: 24px;
+  height: 50px;
   margin-bottom: 70px;
 }
 
 label {
-  font-size: 30px;
   color: white;
+  font-size: 30px;
   margin-top: 20px;
 }
 
 .play-button {
-  margin-top: 50px;
-  width: 76%;
-  height: 50px;
-  font-size: 20px;
   background-color: rgba( 255, 255, 255, 0.8);
+  background-color: #BEB360;
   border-radius: 3px;
   color: #fff;
-  background-color: #BEB360;
   cursor: pointer;
+  font-size: 20px;
+  height: 50px;
   margin-bottom: 1000px;
+  margin-top: 50px;
+  width: 76%;
 }
 
 .disabled-color {
@@ -118,29 +118,28 @@ label {
 /* --------- Directions Page ---------- */
 
 h2 {
-  text-align: center;
   color: #292B26;
+  cursor: pointer;
   font-size: 30px;
   margin-bottom: 35px;
-  cursor: pointer;
+  text-align: center;
 }
 
 .directions {
   background-color: rgba( 255, 255, 255, 0.8);
-  padding: 20px;
-  margin: 10%;
-  width: 80%;
   flex-wrap: wrap;
-  /* height: 520px; */
+  margin: 10%;
+  padding: 20px;
   margin-bottom: 30%;
+  width: 80%;
 }
 
 p {
   color: #292B26;
+  cursor: default;
   font-size: 20px;
   margin-bottom: 15px;
   padding: 0px 50px;
-  cursor: default;
 }
 
 .directions-para {
@@ -149,29 +148,29 @@ p {
 
 /* --------- Play Game Page ---------- */
 .game-column {
-  height: 1000px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  height: 1000px;
   width: 15%;
 }
 
 h3 {
-  font-size: 45px;
   border-bottom: 2px solid black;
+  font-size: 45px;
   margin-bottom: 15px;
 }
 
 h4 {
-  font-size: 25px;
   border-bottom: 2px solid black;
+  font-size: 25px;
   margin-bottom: 15px;
 }
 
 .active-right,
 .active-left {
-  font-size: 20px;
   color: white;
+  font-size: 20px;
 }
 
 .game-board {
@@ -183,11 +182,11 @@ h4 {
 
 .player-left,
 .player-right {
-  text-align: center;
-  width: 200px;
   background-color: #5D4A44;
   height: 98%;
   padding: 15px;
+  text-align: center;
+  width: 200px;
 }
 
 .playing-cards-board {
@@ -197,13 +196,13 @@ h4 {
 }
 
 .card-row {
-  margin: auto;
-  width: calc(90% - 5px);
   display: flex;
   flex-wrap: wrap;
-  perspective: 1000px;
   justify-content: center;
+  margin: auto;
   margin: 5px;
+  perspective: 1000px;
+  width: calc(90% - 5px);
 }
 
 .matches-left,
@@ -213,24 +212,24 @@ h4 {
 
 /* --------- Card Flip Animation ---------- */
 .single-card {
-  width: calc(70% - 5px);
-  position: relative;
+  align-content: space-between;
+  display: flex;
+  justify-content: space-around;
   margin: 5px;
+  padding: 10px;
+  position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
-  display: flex;
-  align-content: space-between;
-  justify-content: space-around;
-  padding: 10px;
+  width: calc(70% - 5px);
 }
 
 .front-face,
 .back-face {
-  width: 100%;
-  position: absolute;
-  border-radius: 5px;
   backface-visibility: hidden;
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
 }
 
 .front-face {
@@ -247,9 +246,9 @@ h4 {
 }
 
 .fade {
-  visibility: hidden;
   opacity: 0;
   transition: delay 2s, visibility 0s 2s, opacity 2s linear;
+  visibility: hidden;
 }
 
 .skew-right {
@@ -270,18 +269,18 @@ h4 {
 
 /* --------- End of Game ---------- */
 .game-ends-section {
-  position: absolute;
+  align-items: center;
   background-color: white;
-  top: 40%;
-  left: 25%;
-  width: 50%;
-  height: 40%;
-  text-align: center;
-  padding-top: 3%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 40%;
+  left: 25%;
+  padding-top: 3%;
+  position: absolute;
+  text-align: center;
+  top: 40%;
+  width: 50%;
 }
 
 .game-ends {
@@ -290,19 +289,18 @@ h4 {
 
 .reset-cards,
 .reset-board {
+  background-color: #BEB360;
   color: white;
   font-size: 20px;
-  width: 70%;
-  background-color: #BEB360;
   height: 35px;
   margin: 5px;
+  width: 70%;
 }
 
 
 /* --------- Overriding Styles ---------- */
 .hidden {
   display: none;
-  /* visibility: hidden; */
   height: 0px;
   margin: 0px;
   padding: 0px;
