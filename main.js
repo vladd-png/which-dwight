@@ -9,12 +9,12 @@ var disableBoard = false;
 var dropDown = document.querySelector(".drop-down");
 var endTime = null;
 var errorMsg = document.querySelector(".play-button");
-var firstInput = document.querySelector("#one-name");
+var firstInput = document.getElementById("one-name");
 var flippedCardOver = false;
 var formContainer = document.querySelector(".player-input-form");
 var gameBoard = document.querySelector(".game-board");
 var headerDwight = document.querySelector(".header");
-var heroMenu = document.querySelector("#menu-icon")
+var heroMenu = document.getElementById("menu-icon")
 var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
 var navBar = document.querySelector(".top-nav");
@@ -36,7 +36,7 @@ var roundOneRight = document.querySelector(".win-1-right");
 var roundThreeRight = document.querySelector(".win-3-right");
 var roundTwoRight = document.querySelector(".win-2-right");
 var score = [];
-var secondInput = document.querySelector("#two-name");
+var secondInput = document.getElementById("two-name");
 var skewPile = ['right', 'left', 'large', 'small'];
 var startGameBtn = document.querySelector("#start-game");
 var startTime = null;
@@ -45,7 +45,7 @@ var timer = document.querySelector(".timer-insert");
 var totalTime = null;
 var twoName = document.querySelector(".player-two-name").value;
 var turnCounter = 0;
-var winner = document.querySelector("#winner");
+var winner = document.getElementById("winner");
 
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
@@ -170,7 +170,7 @@ function showCards() {
     skewCards();
     document.querySelector(".top").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
-      <img class="front-face" src="${deck.cards[i].imgSource}">
+      <img class="front-face" src="${deck.cards[i].imgSource}" >
       <img class="back-face" src="./assets/card-back.png">
     </div>`;
   }
@@ -312,7 +312,6 @@ function getData() {
     <h5>Player Two Score</h5>
     <div class="heroScore">${retrievedScore[1]}</div>
   </span>` ;
-
 }
 
  function endGame() {
