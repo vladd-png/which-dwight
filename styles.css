@@ -18,7 +18,7 @@ main {
   width: 80px;
   border: solid 10px black;
   cursor: pointer;
-  
+
 }
 
 .top-nav {
@@ -41,6 +41,14 @@ h1 {
 
 .header {
   cursor: pointer;
+}
+
+.dropDown {
+  display: block;
+  width: 20%;
+  background-color: black;
+  color: white;
+  font-size: 45px;
 }
 
 /* --------- Player Input Page ---------- */

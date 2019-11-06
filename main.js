@@ -13,6 +13,7 @@ var flippedCardOver = false;
 var formContainer = document.querySelector(".player-input-form");
 var gameBoard = document.querySelector(".game-board");
 var headerDwight = document.querySelector(".header");
+var heroMenu = document.querySelector("#menu-icon")
 var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
 var navBar = document.querySelector(".top-nav");
@@ -45,8 +46,6 @@ var twoName = document.querySelector(".player-two-name").value;
 var turnCounter = 0;
 var winner = document.querySelector("#winner");
 
-var heroMenu = document.querySelector("#menu-icon")
-
 // ---------- Class Instantiations ----------
 var card1 = new Card({idNumber: 1, imgSource: "./assets/hannibal-dwight.png"});
 var card2 = new Card({idNumber: 2, imgSource: "./assets/joker-dwight.png"});
@@ -61,14 +60,14 @@ var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
 
 // ---------- Event Listeners ----------
-playBtn.addEventListener("click", savePlayerInfo);
-headerDwight.addEventListener("click", returnHome);
-startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
-secondInput.addEventListener("keyup", enablePlayBtn);
-newGame.addEventListener("click", resetGame);
-rematchGame.addEventListener("click", resetCards);
+headerDwight.addEventListener("click", returnHome);
 heroMenu.addEventListener("click", getData);
+newGame.addEventListener("click", resetGame);
+playBtn.addEventListener("click", savePlayerInfo);
+rematchGame.addEventListener("click", resetCards);
+secondInput.addEventListener("keyup", enablePlayBtn);
+startGameBtn.addEventListener("click", startGame);
 
 // ---------- Helper Functions ----------
 function savePlayerInfo(event) {
@@ -99,6 +98,13 @@ function resetGame() {
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
+}
+
+function showWinner() {
+  saveData();
+  endTimer();
+  logTime();
+  resetBoard();
 }
 
 // ---------- Page Changes ----------
@@ -188,9 +194,9 @@ function showCards() {
 }
 
 function removeCards() {
-  document.querySelector(".a").innerHTML = ``;
-  document.querySelector(".b").innerHTML = ``;
-  document.querySelector(".c").innerHTML = ``;
+  document.querySelector(".top").innerHTML = ``;
+  document.querySelector(".middle").innerHTML = ``;
+  document.querySelector(".bottom").innerHTML = ``;
 }
 
 // ---------- Card Flip Animation ----------
@@ -233,10 +239,7 @@ function resetDeck() {
 }
 
 // ---------- Player Data ----------
-function showWinner() {
-  saveData();
-  endTimer();
-  logTime();
+function resetBoard() {
   playerRightCount = 0;
   playerLeftCount = 0;
   endOfGame.classList.remove("hidden");
@@ -282,20 +285,20 @@ function showCountLeft() {
 
 // ---------- End of Game ----------
 function saveData() {
-  var storedPlayer = [];
-  var storedScore = [];
   storedScore.push(score);
   storedPlayer.push(players);
-  var stringifiedPlayer = JSON.stringify(storedPlayer);
-  var stringifiedScore = JSON.stringify(storedScore);
-  localStorage.setItem('score', stringifiedScore);
-  localStorage.setItem('players', stringifiedPlayer);
+  localStorage.setItem('score', JSON.stringify(score));
+  localStorage.setItem('players', JSON.stringify(players));
 }
 
 function getData() {
-  var retrievedPlayers = localStorage.getItem(players);
-  var playerOutput = JSON.parse(retrievedPlayers);
-  console.log(playerOutput);
+  var retrievedPlayers = JSON.parse(localStorage.getItem("players"));
+  var retrievedScore = JSON.parse(localStorage.getItem("score"));
+  var dropDown = document.querySelector(".dropd-down")
+  console.log(retrievedScore[0]);
+  console.log(retrievedPlayers[0]);
+  dropDown.innerHTML += `${retrievedPlayers[0]} ${retrievedScore[0]}` ;
+
 }
 
  function endGame() {

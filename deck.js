@@ -13,6 +13,7 @@ class Deck {
         array[i] = array[j];
         array[j] = tempNum;
     }
+    console.log(this.cards);
   }
 
   disableCards(event) {
@@ -26,11 +27,15 @@ class Deck {
     }
     if(this.matches % 5 === 0) {
       this.matches = 0;
-      score.push(playerLeftCount);
-      score.push(playerRightCount);
+      //doesnt save the last match here
       showCountRight();
       showCountLeft();
-      setTimeout(showWinner, 1000);
+      setTimeout(function() {
+        score.push(playerLeftCount);
+        score.push(playerRightCount);
+        showWinner();
+        //does save the last match here
+      }, 1000)
     }
   }
 
@@ -54,7 +59,6 @@ class Deck {
     }
 
   showMatchCount() {
-    console.log();
     if(turnCounter % 4 === 0) {
       playerLeftCount++;
       showCountLeft();
