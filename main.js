@@ -299,8 +299,6 @@ function toggleHero() {
 function getData() {
   var retrievedPlayers = JSON.parse(localStorage.getItem("players"));
   var retrievedScore = JSON.parse(localStorage.getItem("score"));
-  console.log(retrievedScore[0]);
-  console.log(retrievedPlayers[0]);
   dropDown.innerHTML += `
   <span class="drop-down-menu">
     <h5>Player One Name</h5>

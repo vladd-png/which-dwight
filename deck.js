@@ -13,7 +13,6 @@ class Deck {
         array[i] = array[j];
         array[j] = tempNum;
     }
-    console.log(this.cards);
   }
 
   disableCards(event) {
