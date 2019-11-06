@@ -6,6 +6,7 @@ var cardsBoard = document.querySelector(".playing-cards-board");
 var directions = document.querySelector(".directions");
 var endOfGame = document.querySelector(".game-ends-section");
 var disableBoard = false;
+var dropDown = document.querySelector(".drop-down");
 var endTime = null;
 var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
@@ -62,7 +63,7 @@ var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, car
 // ---------- Event Listeners ----------
 firstInput.addEventListener("keyup", enablePlayBtn);
 headerDwight.addEventListener("click", returnHome);
-heroMenu.addEventListener("click", getData);
+heroMenu.addEventListener("click", toggleHero);
 newGame.addEventListener("click", resetGame);
 playBtn.addEventListener("click", savePlayerInfo);
 rematchGame.addEventListener("click", resetCards);
@@ -285,19 +286,32 @@ function showCountLeft() {
 
 // ---------- End of Game ----------
 function saveData() {
-  storedScore.push(score);
-  storedPlayer.push(players);
   localStorage.setItem('score', JSON.stringify(score));
   localStorage.setItem('players', JSON.stringify(players));
 }
 
+function toggleHero() {
+  getData();
+  dropDown.classList.toggle("hidden");
+}
+
+
 function getData() {
   var retrievedPlayers = JSON.parse(localStorage.getItem("players"));
   var retrievedScore = JSON.parse(localStorage.getItem("score"));
-  var dropDown = document.querySelector(".drop-down")
   console.log(retrievedScore[0]);
   console.log(retrievedPlayers[0]);
-  dropDown.innerHTML += `<span class="player-active">${retrievedPlayers[0]} ${retrievedScore[0]}</span>` ;
+  dropDown.innerHTML += `
+  <span class="drop-down-menu">
+    <h5>Player One Name</h5>
+    <div class="heroName">${retrievedPlayers[0]}</div>
+    <h5>Player One Score</h5>
+    <div class="heroScore">${retrievedScore[0]}</div>
+    <h5>Player Two Name</h5>
+    <div class="heroName">${retrievedPlayers[1]}</div>
+    <h5>Player Two Score</h5>
+    <div class="heroScore">${retrievedScore[1]}</div>
+  </span>` ;
 
 }
 
