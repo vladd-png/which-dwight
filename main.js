@@ -5,6 +5,8 @@ var cards = document.querySelectorAll(".single-card");
 var cardsBoard = document.querySelector(".playing-cards-board");
 var directions = document.querySelector(".directions");
 var endOfGame = document.querySelector(".game-ends-section");
+var disableBoard = false;
+var dropDown = document.querySelector(".drop-down");
 var endTime = null;
 var errorMsg = document.querySelector(".play-button");
 var firstInput = document.querySelector("#one-name");
@@ -12,6 +14,7 @@ var flippedCardOver = false;
 var formContainer = document.querySelector(".player-input-form");
 var gameBoard = document.querySelector(".game-board");
 var headerDwight = document.querySelector(".header");
+var heroMenu = document.querySelector("#menu-icon")
 var leftColumn = document.querySelector(".player-left");
 var leftHeaderName = document.querySelector(".left-header-name");
 var navBar = document.querySelector(".top-nav");
@@ -21,6 +24,7 @@ var playBtn = document.querySelector(".play-button");
 var playerLeftCount = 0;
 var playerRightCount = 0;
 var playerOneName = document.getElementById("player-one");
+var players = [];
 var playerTwoName = document.getElementById("player-two");
 var rematchGame = document.querySelector(".reset-cards");
 var rightColumn = document.querySelector(".player-right");
@@ -31,6 +35,7 @@ var roundTwoLeft = document.querySelector(".win-2-left");
 var roundOneRight = document.querySelector(".win-1-right");
 var roundThreeRight = document.querySelector(".win-3-right");
 var roundTwoRight = document.querySelector(".win-2-right");
+var score = [];
 var secondInput = document.querySelector("#two-name");
 var skewPile = ['right', 'left', 'large', 'small'];
 var startGameBtn = document.querySelector("#start-game");
@@ -56,13 +61,14 @@ var card10 = new Card({idNumber: 5, imgSource: "./assets/kerrigan-dwight.png"});
 var deck = new Deck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10]);
 
 // ---------- Event Listeners ----------
-playBtn.addEventListener("click", savePlayerInfo);
-headerDwight.addEventListener("click", returnHome);
-startGameBtn.addEventListener("click", startGame);
 firstInput.addEventListener("keyup", enablePlayBtn);
-secondInput.addEventListener("keyup", enablePlayBtn);
+headerDwight.addEventListener("click", returnHome);
+heroMenu.addEventListener("click", toggleHero);
 newGame.addEventListener("click", resetGame);
+playBtn.addEventListener("click", savePlayerInfo);
 rematchGame.addEventListener("click", resetCards);
+secondInput.addEventListener("keyup", enablePlayBtn);
+startGameBtn.addEventListener("click", startGame);
 
 // ---------- Helper Functions ----------
 function savePlayerInfo(event) {
@@ -81,6 +87,8 @@ function resetCards() {
   endGame();
   removeCards();
   startGame();
+  activeLeft.classList.remove("hidden");
+  leftColumn.classList.add("player-active");
 }
 
 function resetGame() {
@@ -91,6 +99,13 @@ function resetGame() {
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
+}
+
+function showWinner() {
+  saveData();
+  endTimer();
+  logTime();
+  resetBoard();
 }
 
 // ---------- Page Changes ----------
@@ -135,10 +150,12 @@ function saveName() {
   var oneName = document.querySelector(".player-one-name").value.toUpperCase();
   leftHeaderName.innerText = oneName;
   playerOneName.innerText = oneName;
+  players.push(oneName);
   winner.innerText = `${oneName} HAS WON`;
   var twoName = document.querySelector(".player-two-name").value.toUpperCase();
   rightHeaderName.innerText = twoName;
   playerTwoName.innerText = twoName;
+  players.push(twoName);
   winner.innerText = `${twoName} HAS WON`;
 }
 
@@ -151,7 +168,7 @@ function skewCards() {
 function showCards() {
   for (var i = 0; i < 3; i++) {
     skewCards();
-    document.querySelector(".a").innerHTML +=
+    document.querySelector(".top").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
@@ -160,7 +177,7 @@ function showCards() {
 
   for (var i = 3; i < 7; i++) {
     skewCards();
-    document.querySelector(".b").innerHTML +=
+    document.querySelector(".middle").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
@@ -169,7 +186,7 @@ function showCards() {
 
   for (var i = 7; i <= 9; i++) {
     skewCards();
-    document.querySelector(".c").innerHTML +=
+    document.querySelector(".bottom").innerHTML +=
     `<div class="single-card skew-${skewData}" data-number="${deck.cards[i].idNumber}">
       <img class="front-face" src="${deck.cards[i].imgSource}">
       <img class="back-face" src="./assets/card-back.png">
@@ -178,9 +195,9 @@ function showCards() {
 }
 
 function removeCards() {
-  document.querySelector(".a").innerHTML = ``;
-  document.querySelector(".b").innerHTML = ``;
-  document.querySelector(".c").innerHTML = ``;
+  document.querySelector(".top").innerHTML = ``;
+  document.querySelector(".middle").innerHTML = ``;
+  document.querySelector(".bottom").innerHTML = ``;
 }
 
 // ---------- Card Flip Animation ----------
@@ -223,10 +240,9 @@ function resetDeck() {
 }
 
 // ---------- Player Data ----------
-function showWinner() {
-  endTimer();
-  logTime();
-  // showWinName();
+function resetBoard() {
+  playerRightCount = 0;
+  playerLeftCount = 0;
   endOfGame.classList.remove("hidden");
   endOfGame.classList.add("game-ends");
   activeLeft.classList.add("hidden");
@@ -268,7 +284,37 @@ function showCountLeft() {
   rightMatch.innerHTML = `<div class="match-title">${playerLeftCount}<div>`;
 }
 
-// ---------- Reset the Game ----------
+// ---------- End of Game ----------
+function saveData() {
+  localStorage.setItem('score', JSON.stringify(score));
+  localStorage.setItem('players', JSON.stringify(players));
+}
+
+function toggleHero() {
+  getData();
+  dropDown.classList.toggle("hidden");
+}
+
+
+function getData() {
+  var retrievedPlayers = JSON.parse(localStorage.getItem("players"));
+  var retrievedScore = JSON.parse(localStorage.getItem("score"));
+  console.log(retrievedScore[0]);
+  console.log(retrievedPlayers[0]);
+  dropDown.innerHTML += `
+  <span class="drop-down-menu">
+    <h5>Player One Name</h5>
+    <div class="heroName">${retrievedPlayers[0]}</div>
+    <h5>Player One Score</h5>
+    <div class="heroScore">${retrievedScore[0]}</div>
+    <h5>Player Two Name</h5>
+    <div class="heroName">${retrievedPlayers[1]}</div>
+    <h5>Player Two Score</h5>
+    <div class="heroScore">${retrievedScore[1]}</div>
+  </span>` ;
+
+}
+
  function endGame() {
    endOfGame.classList.add("hidden");
    endOfGame.classList.remove("game-ends");

@@ -2,7 +2,6 @@ class Deck {
   constructor(card) {
     this.cards = card;
     this.matchedCards = 0;
-    this.selectedCards = null;
     this.matches = 0;
     this.value = card.value;
   }
@@ -14,6 +13,7 @@ class Deck {
         array[i] = array[j];
         array[j] = tempNum;
     }
+    console.log(this.cards);
   }
 
   disableCards(event) {
@@ -27,17 +27,23 @@ class Deck {
     }
     if(this.matches % 5 === 0) {
       this.matches = 0;
-      showWinner();
+      //doesnt save the last match here
+      showCountRight();
+      showCountLeft();
+      setTimeout(function() {
+        score.push(playerLeftCount);
+        score.push(playerRightCount);
+        showWinner();
+        //does save the last match here
+      }, 1000)
     }
   }
 
   unflipCards(event) {
-    disableBoard = true;
     setTimeout(resetCardAnimation, 1500);
     function resetCardAnimation() {
       storedCards[0].classList.remove("flip");
       storedCards[1].classList.remove("flip");
-      disableBoard = false;
       resetDeck();
     }
   }
@@ -53,7 +59,6 @@ class Deck {
     }
 
   showMatchCount() {
-    console.log();
     if(turnCounter % 4 === 0) {
       playerLeftCount++;
       showCountLeft();
